@@ -1,6 +1,7 @@
 /*  Main Styles */
 body{
     background: #222;
+    color: white;
 }
 header{
     top:0; left:0;
@@ -20,7 +21,7 @@ header, footer{
     font-size:20px;
     width:100%;
     text-align:center;
-    color:#f3f3f3;
+    color: rgb(253, 252, 252);
     font-weight:bold;
     text-shadow:0 -1px 0 rgba(0,0,0,0.5);
     line-height:45px;
@@ -36,7 +37,9 @@ h1{
     width:100%;
     overflow:auto;
 }
-#main-content {
+#main {
+    top:45px; bottom:48px; left:0;
+    overflow:auto;
     position:absolute;
     z-index:1;
     width:100%;
