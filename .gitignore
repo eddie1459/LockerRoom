@@ -3,6 +3,13 @@
 .DS_Store
 
 CordovaLib/.DS_Store
+<<<<<<< HEAD
 =======
 node_modules/
 >>>>>>> Added package json
+=======
+
+www/.DS_Store
+
+www/App/.DS_Store
+>>>>>>> Commiting Home and ignoring
