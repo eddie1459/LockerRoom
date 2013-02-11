@@ -10,8 +10,8 @@
                 "": "defaultAction"
             },
             defaultAction: function () {
-                Landdb.layout = new mainview();
-                Landdb.main.show(Landdb.layout);
+                LockerRoom.layout = new mainview();
+                LockerRoom.main.show(LockerRoom.layout);
             }
         });
 
@@ -19,12 +19,12 @@
 
             var app_router = new appRouter;
 
-            Landdb = new marionette.Application();
+            LockerRoom = new marionette.Application();
 
             // kicking this off here to support anything that needs it early on
-            Landdb.localvent = new marionette.EventAggregator();
+            LockerRoom.localvent = new marionette.EventAggregator();
 
-            Landdb.addRegions({
+            LockerRoom.addRegions({
                 main: "#main"
                 //header: "#header",
                 //modal: ModalRegion
