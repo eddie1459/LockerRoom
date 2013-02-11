@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
 .DS_Store
 
 CordovaLib/.DS_Store
+=======
+node_modules/
+>>>>>>> Added package json
