@@ -12,13 +12,10 @@
             },
             defaultAction: function () {
                 LockerRoom.layout = new mainview();
-<<<<<<< HEAD
                 LockerRoom.main.show(LockerRoom.layout);
                 LockerRoom.layout = new footerView();
                 LockerRoom.footer.show(LockerRoom.layout);
-=======
                 LockerRoom.main.show(LockerRoom.layout); 
->>>>>>> Started updating the server.js to be a little more production worthy.
             }
         });
 

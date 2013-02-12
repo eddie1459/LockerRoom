@@ -25,7 +25,7 @@ app.configure('production', function(){
   app.set('socketaddress', 'http://notifier.jit.su');
 });
 
-// TODO:  Routes are cooler. 
+// TODO:  Routes are cooler because we can feed em configuration options!
 app.get("/", function (req, res) {
     res.redirect("index.html");
 });
@@ -39,8 +39,52 @@ server.listen(app.get('port'), function(){
 var db = mongoose.connect(app.get('mongodbconn'));
 var Schema = mongoose.Schema;
 var stateModel = require('./model/state.js').make(Schema, mongoose);
-var sportModel = require('./model/state.js').make(Schema, mongoose);
+var sportModel = require('./model/sport.js').make(Schema, mongoose);
+var teamModel = require('./model/team.js').make(Schema, mongoose);
+var topicModel = require('./model/topic.js').make(Schema, mongoose);
+var commentModel = require('./model/comment.js').make(Schema, mongoose);
 // end db stuff
 
-// TODO:  Wire in Mongoose models
-// TODO:  Wire in API
+// begin require in api
+var states = require('./api/states.js');
+var sports = require('./api/sports.js');
+var teams = require('./api/teams.js');
+var topics = require('./api/topics.js');
+var comments = require('./api/comments.js');
+// end require in api
+
+// begin socket.io config
+var io = require('socket.io').listen(server);
+io.sockets.on('connection', function(socket) {
+  // TODO:  Define the live interaction!
+  // socket.on('SignOn', function (data) {
+  //   console.log("userid received: " + data);
+
+  //   socket.set("userid", data.userid, function() {
+  //     console.log("userid stored: " + data.userid);
+  //   });
+    
+  //   socket.emit('SignedOn', data);            // this user
+  //   socket.broadcast.emit('SignedOn', data);  // everyone
+  // });
+
+  // socket.on('AddNotification', function (data) {
+  //   notifications.addNotification(nModel, io, data);
+  // });
+
+  // socket.on('DeleteAllNotifications', function () {
+  //   notifications.deleteAll(nModel, io);
+  // });
+});
+// end socket.io config
+
+// begin make api
+var statesApi = states.make(app, stateModel, io);
+var sportsApi = sports.make(app, sportModel, io);
+var teamsApi = teams.make(app, teamModel, io);
+var topicsApi = topics.make(app, topicModel, io);
+var commentsApi = comments.make(app, commentModel, io);
+// end make api
+
+// export NODE_ENV=development
+// console.log(process.env.NODE_ENV);
