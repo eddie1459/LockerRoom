@@ -1,0 +1,5 @@
+curl --request GET http://localhost:3000/api/state/
+curl --request GET http://localhost:3000/api/sport/
+
+// try this for posting topics and comments!!!
+--request POST http://localhost:3000/api/notification/ -d {"userid":"corey","sourcekey":"1","sourcetype":"user","sourcedisplay":"snoop","message":"hellofromcurl","returnurl":"","imagepath":"","priority":"high","status":"unread","flag":"followup"} -H Content-Type:application/json

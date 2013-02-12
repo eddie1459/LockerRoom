@@ -87,4 +87,4 @@ var commentsApi = comments.make(app, commentModel, io);
 // end make api
 
 // export NODE_ENV=development
-// console.log(process.env.NODE_ENV);
+console.log(process.env.NODE_ENV);
