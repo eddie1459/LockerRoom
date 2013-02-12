@@ -310,3 +310,43 @@ body {
   -webkit-border-top-right-radius: 6px;
   -webkit-border-bottom-right-radius: 6px;
 }
+
+.container {
+    border:solid 1px #DEDEDE; 
+    background:#EFEFEF;
+    color:#222222;
+    padding-top: 1px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: arial,sans-serif;
+    overflow:auto;
+}
+
+.content{
+    background:#EFEFEF;
+    color:#222222;
+    padding-top: 1px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: arial,sans-serif;
+}
+
+.content {
+    border:solid 1px #DEDEDE;
+    padding-top: 25px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.msgTime {
+    font-size:10px;
+    float: right;
+}
+
+.msgUser {
+    font-size:10px;
+    float: left;
+}
