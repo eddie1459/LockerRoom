@@ -3,8 +3,9 @@
         'underscore',
         'backbone',
         'marionette',
-        'Views/MainView'
-    ], function ($, _, backbone, marionette, mainview) {
+        'Views/MainView',
+        'Views/Footer'
+    ], function ($, _, backbone, marionette, mainview, footerView) {
         var appRouter = marionette.AppRouter.extend({
             routes: {
                 "": "defaultAction"
@@ -12,6 +13,8 @@
             defaultAction: function () {
                 LockerRoom.layout = new mainview();
                 LockerRoom.main.show(LockerRoom.layout);
+                LockerRoom.layout = new footerView();
+                LockerRoom.footer.show(LockerRoom.layout);
             }
         });
 
@@ -25,7 +28,8 @@
             LockerRoom.localvent = new marionette.EventAggregator();
 
             LockerRoom.addRegions({
-                main: "#main"
+                main: "#main",
+                footer: "#footer"
                 //header: "#header",
                 //modal: ModalRegion
             });

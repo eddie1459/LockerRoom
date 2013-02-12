@@ -26,6 +26,12 @@ header, footer{
     text-shadow:0 -1px 0 rgba(0,0,0,0.5);
     line-height:45px;
 }
+
+.well {
+  background-color: rgb(3, 3, 3);
+}
+
+
 h1{
     margin:0;
     text-transform: uppercase;
