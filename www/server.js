@@ -56,25 +56,7 @@ var comments = require('./api/comments.js');
 // begin socket.io config
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
-  // TODO:  Define the live interaction!
-  // socket.on('SignOn', function (data) {
-  //   console.log("userid received: " + data);
-
-  //   socket.set("userid", data.userid, function() {
-  //     console.log("userid stored: " + data.userid);
-  //   });
-    
-  //   socket.emit('SignedOn', data);            // this user
-  //   socket.broadcast.emit('SignedOn', data);  // everyone
-  // });
-
-  // socket.on('AddNotification', function (data) {
-  //   notifications.addNotification(nModel, io, data);
-  // });
-
-  // socket.on('DeleteAllNotifications', function () {
-  //   notifications.deleteAll(nModel, io);
-  // });
+  // no reason to hookup anything here, yet...
 });
 // end socket.io config
 

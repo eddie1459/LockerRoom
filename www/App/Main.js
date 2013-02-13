@@ -30,7 +30,5 @@
 require([
     'app'
 ], function (app) {
-        app.initialize();
-    // alert(app);
-    // alert("Fuck You From Require.JS");
+    app.initialize();
 });

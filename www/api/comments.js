@@ -64,7 +64,9 @@ function addComment(model, io, data) {
 	});
 	c.save(function(err) {
 		if (!err) {
-			// TODO:  This is where socket.io comes in. We've saved the record so now we need to tell everyone!	
+			io.sockets.clients().forEach(function (socket) {
+		 		socket.broadcast.emit('comments-' + data.topicid, c);
+		  	});
 		} else {
 			// TODO:  Report problem back to the user...
 			return console.log(err);
