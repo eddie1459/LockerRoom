@@ -2,8 +2,8 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'Views/Messages',
-        'Lib/Require/Plugins/text!Templates/Messages.html'
+        'Views/Comments',
+        'Lib/Require/Plugins/text!Templates/Comments.html'
     ], function ($, _, backbone, msgsView, templ) {
         var view = backbone.View.extend({            
             template: templ,

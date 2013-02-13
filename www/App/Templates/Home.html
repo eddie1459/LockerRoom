@@ -1,12 +1,16 @@
 <div class="pull-left span12">
 Select Your State
 <select class="input-medium">
-	<option>Kentucky</option>
+<% for (var i=0;i < States.length; i++) { %>
+	<option><%= States.at(i).get("name") %></option>
+<%};%>
 </select>
 </div>
 <div class="pull-left span12">
 Select Your Sport
 <select class="input-medium">
-	<option>Football</option>
+<% for (var i=0;i < Sports.length; i++) { %>
+	<option><%= Sports.at(i).get("name") %></option>
+<%};%>
 </select>
 </div>

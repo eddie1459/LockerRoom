@@ -6,7 +6,7 @@ define([
         'Views/Home',
         'Views/Teams',
         'Views/Topics',
-        'Views/Messages',
+        'Views/Comments',
         'Collection/states',
         'Collection/sports',
         'Lib/Require/Plugins/text!Templates/Header.html'
@@ -14,6 +14,10 @@ define([
         var view = marionette.Layout.extend({            
             template: templ,
             initialize: function () {
+                LockerRoom.vent.on("showHome", this.homeClicked);
+                LockerRoom.vent.on("showTeams", this.teamsClicked);
+                LockerRoom.vent.on("showTopics", this.topicsClicked);
+                LockerRoom.vent.on("showComments", this.commentsClicked);
             },
             events: {
                 "click #homeLink": "homeClicked",
@@ -26,17 +30,15 @@ define([
                     success: function(sts) {
                         new sports().fetch({
                             success: function(spts) {
-                                var v = new homeView(new backbone.Model({
-                                    States: sts,
-                                    Sports: spts
-                                }));
-                                // TODO:  We need to revert main back
-                                //        to make this work well.
-                                // LockerRoom.content.show(v);
+                                var model = backbone.Model.extend();
+                                var m = new model({ States: sts, Sports: spts });
+                                var v = new homeView({ model: m });
+                                LockerRoom.main.show(v);
                             }
                         });
                     }
                 });
+                
             },
             teamsClicked: function(e) {
                 var v = new teamView(); // model
