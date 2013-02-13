@@ -8,7 +8,7 @@ define([
         'Views/Topics',
         'Views/Messages',
         'Lib/Require/Plugins/text!Templates/Header.html'
-    ], function ($, _, backbone, marionette, templ) {
+    ], function ($, _, backbone, marionette, homeView, teamView, topicView, commentView, templ) {
         var view = marionette.Layout.extend({            
             template: templ,
             initialize: function () {
@@ -21,19 +21,19 @@ define([
             },
             homeClicked: function(e) {
                 var v = new homeView(); // model
-                LockerRoom.Main.show(v);
+                LockerRoom.main.show(v);
             },
             teamsClicked: function(e) {
                 var v = new teamView(); // model
-                LockerRoom.Main.show(v);
+                LockerRoom.main.show(v);
             },
             topicsClicked: function(e) {
-                var v = new topicsView(); // model
-                LockerRoom.Main.show(v);
+                var v = new topicView(); // model
+                LockerRoom.main.show(v);
             },
             commentsClicked: function(e) {
-                var v = new commentsView(); // model
-                LockerRoom.Main.show(v);
+                var v = new commentView(); // model
+                LockerRoom.main.show(v);
             }
         });
 
