@@ -11,6 +11,11 @@ define([
                 "click li": "showTopics"
             },
             initialize: function () {
+                var that = this;
+                $("#goBack").off('click');
+                $("#goBack").click(function (){
+                    that.goBack();
+                });
             },
             render: function () {
                 var template = _.template(templ);
@@ -22,6 +27,9 @@ define([
                 //TODO: need to show topics by teamId
                 var view = new topicsView();
                 LockerRoom.main.show(view);
+            },
+            goBack: function () {
+                backbone.history.navigate('', true);
             }
         });
 

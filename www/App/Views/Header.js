@@ -7,9 +7,6 @@ define([
     ], function ($, _, backbone, marionette, templ) {
         var view = marionette.Layout.extend({            
             template: templ,
-            events: {
-                "click #goBack": "goBack"
-            },
             initialize: function () {
                 var that = this;
             },
@@ -18,9 +15,6 @@ define([
                 this.$el.html( template );
                 return this.el;
                 
-            },
-            goBack: function (view) {
-                window.history.back();
             }
         });
 

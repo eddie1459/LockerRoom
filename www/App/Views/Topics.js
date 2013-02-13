@@ -2,11 +2,7 @@ define([
         'jquery',
         'underscore',
         'backbone',
-<<<<<<< HEAD
-	    'Views/Messages'
-=======
 	    'Views/Messages',
->>>>>>> Fixing some things the merge busted
         'Lib/Require/Plugins/text!Templates/Topics.html'
     ], function ($, _, backbone, msgsView, templ) {
         var view = backbone.View.extend({            
@@ -15,6 +11,11 @@ define([
                 "click li": "showMessages"
             },
             initialize: function () {
+                var that = this;
+                $("#goBack").off('click');
+                $("#goBack").click(function (){
+                    that.goBack();
+                });
                 // TODO:  Get this from config
                 // var url = "#{socketaddress}";
                 //var url = "http://localhost:3000/"
@@ -24,6 +25,9 @@ define([
 
                     // TODO: Prepend the new topic to the top of our div!
                 //});
+            },
+            goBack: function() {
+                backbone.history.navigate("teams", true);
             },
             render: function () {
                 var template = _.template(templ);
