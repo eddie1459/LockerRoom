@@ -13,9 +13,8 @@
             defaultAction: function () {
                 LockerRoom.layout = new mainview();
                 LockerRoom.main.show(LockerRoom.layout);
-                LockerRoom.layout = new footerView();
-                LockerRoom.footer.show(LockerRoom.layout);
-                LockerRoom.main.show(LockerRoom.layout); 
+                LockerRoom.layoutFooter = new footerView();
+                LockerRoom.footer.show(LockerRoom.layoutFooter);
             }
         });
 
@@ -31,8 +30,6 @@
             LockerRoom.addRegions({
                 main: "#main",
                 footer: "#footer"
-                //header: "#header",
-                //modal: ModalRegion
             });
 
             backbone.history.start();
