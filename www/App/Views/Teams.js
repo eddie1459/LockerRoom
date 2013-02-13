@@ -3,9 +3,8 @@ define([
         'underscore',
         'backbone',
         'marionette',
-        'Views/Topics',
         'Lib/Require/Plugins/text!Templates/Teams.html'
-    ], function ($, _, backbone, marionette, topicsView, templ) {
+    ], function ($, _, backbone, marionette, templ) {
         var view = marionette.ItemView.extend({            
             template: templ,
             events: {
@@ -13,15 +12,10 @@ define([
             },
             initialize: function () {
             },
-            // render: function () {
-            //     var template = _.template(templ);
-            //     this.$el.html( template );
-            //     return this.el;
-            // },
-            showTopics: function (evt) {
-                //TODO: need to show topics by teamId
-                var view = new topicsView();
-                LockerRoom.main.show(view);
+            showTopics: function (e) {
+                var teamId = $(e.currentTarget).data('teamid');
+
+                LockerRoom.vent.trigger("showTopics", e, teamId);
             }
         });
 

@@ -2,12 +2,13 @@ define([
         'jquery',
         'underscore',
         'backbone',
+        'marionette',
         'Lib/Require/Plugins/text!Templates/Topics.html'
-    ], function ($, _, backbone, templ) {
-        var view = backbone.View.extend({            
+    ], function ($, _, backbone, marionette, templ) {
+        var view = marionette.ItemView.extend({            
             template: templ,
 	        events: {
-                "click li": "showMessages"
+                "click li": "showComments"
             },
             initialize: function () {
                 // TODO:  Get this from config
@@ -20,10 +21,10 @@ define([
                     // TODO: Prepend the new topic to the top of our div!
                 //});
             },
-            render: function () {
-                var template = _.template(templ);
-                this.$el.html( template );
-                return this.el;
+            showComments: function(e) {
+                var topicId = $(e.currentTarget).data('topicid');
+
+                LockerRoom.vent.trigger("showComments", e, topicId);
             }
         });
 

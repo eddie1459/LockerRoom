@@ -9,14 +9,18 @@ define([
         'Views/Comments',
         'ViewModel/HomeViewModel',
         'ViewModel/TeamViewModel',
+        'ViewModel/TopicsViewModel',
+        'ViewModel/CommentsViewModel',
         'Lib/Require/Plugins/text!Templates/Header.html'
-    ], function ($, _, backbone, marionette, homeView, teamView, topicView, commentView, homeVm, teamVm, templ) {
+    ], function ($, _, backbone, marionette, homeView, teamView, topicView, commentView, homeVm, teamVm, topicVm, commentVm, templ) {
         var view = marionette.Layout.extend({            
             template: templ,
             currentKey: "home",
             currentIndex: 0,
             selectedStateId: null,
             selectedSportId: null,
+            selectedTeamId: null,
+            selectedTopicId: null,
             navigate: function(e) {
                 if (this.currentIndex == 0) {
                     this.homeClicked(e);
@@ -33,8 +37,14 @@ define([
 
                 LockerRoom.vent.on("showHome", this.homeClicked);
                 LockerRoom.vent.on("showTeams", this.teamsClicked);
-                LockerRoom.vent.on("showTopics", this.topicsClicked);
-                LockerRoom.vent.on("showComments", this.commentsClicked);
+                LockerRoom.vent.on("showTopics", function(e, teamId) { 
+                    $this.selectedTeamId = teamId;
+                    $this.topicsClicked(e);
+                });
+                LockerRoom.vent.on("showComments", function(e, topicId) {
+                    $this.selectedTopicId = topicId;
+                    $this.commentsClicked(e);
+                });
 
                 LockerRoom.vent.on("stateChanged", function(stateId) {
                     $this.selectedStateId = stateId;
@@ -61,12 +71,16 @@ define([
                 }, this.selectedSportId, this.selectedStateId);
             },
             topicsClicked: function(e) {
-                var v = new topicView(); // model
-                LockerRoom.main.show(v);
+                topicVm.getModel(function(m) {
+                    var v = new topicView({ model: m });
+                    LockerRoom.main.show(v);
+                }, this.selectedTeamId);
             },
             commentsClicked: function(e) {
-                var v = new commentView(); // model
-                LockerRoom.main.show(v);
+                commentVm.getModel(function(m) {
+                    var v = new commentView({ model: m });
+                    LockerRoom.main.show(v);
+                }, this.selectedTopicId);
             },
             goBack: function(e) {
                 if (this.currentIndex == 0) { return; }
