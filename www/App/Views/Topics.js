@@ -12,10 +12,6 @@ define([
             },
             initialize: function () {
                 var that = this;
-                $("#goBack").off('click');
-                $("#goBack").click(function (){
-                    that.goBack();
-                });
                 // TODO:  Get this from config
                 // var url = "#{socketaddress}";
                 //var url = "http://localhost:3000/"
@@ -25,9 +21,6 @@ define([
 
                     // TODO: Prepend the new topic to the top of our div!
                 //});
-            },
-            goBack: function() {
-                backbone.history.navigate("teams", true);
             },
             render: function () {
                 var template = _.template(templ);

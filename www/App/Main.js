@@ -5,7 +5,8 @@
         "backbone": 'Lib/Backbone/backbone-min',
         "marionette": 'Lib/Backbone/backbone.marionette',
         "iscroll": 'Lib/iscroll/iscroll-lite',
-        "cordova": 'Lib/cordova-2.3.0'
+        "cordova": 'Lib/cordova-2.3.0',
+        "jqueryMobile": 'Lib/Jquery/jqueryMobile_min'
     },
     shims: {
         "jquery": {
@@ -23,6 +24,9 @@
         },
         "cordova": {
             exports: "cordova"
+        },
+        "jqueryMobile": {
+            deps: ["jquery"]
         },
     }
 });
