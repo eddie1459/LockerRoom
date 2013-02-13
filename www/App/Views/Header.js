@@ -22,8 +22,21 @@ define([
                 "click #commentsLink": "commentsClicked",
             },
             homeClicked: function(e) {
-                var v = new homeView(); // model
-                LockerRoom.main.show(v);
+                new states().fetch({ 
+                    success: function(sts) {
+                        new sports().fetch({
+                            success: function(spts) {
+                                var v = new homeView(new backbone.Model({
+                                    States: sts,
+                                    Sports: spts
+                                }));
+                                // TODO:  We need to revert main back
+                                //        to make this work well.
+                                // LockerRoom.content.show(v);
+                            }
+                        });
+                    }
+                });
             },
             teamsClicked: function(e) {
                 var v = new teamView(); // model
