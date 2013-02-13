@@ -15,6 +15,8 @@ define([
             template: templ,
             currentKey: "home",
             currentIndex: 0,
+            selectedStateId: null,
+            selectedSportId: null,
             navigate: function(e) {
                 if (this.currentIndex == 0) {
                     this.homeClicked(e);
@@ -27,10 +29,20 @@ define([
                 }
             },
             initialize: function () {
+                var $this = this;
+
                 LockerRoom.vent.on("showHome", this.homeClicked);
                 LockerRoom.vent.on("showTeams", this.teamsClicked);
                 LockerRoom.vent.on("showTopics", this.topicsClicked);
                 LockerRoom.vent.on("showComments", this.commentsClicked);
+
+                LockerRoom.vent.on("stateChanged", function(stateId) {
+                    $this.selectedStateId = stateId;
+                });
+
+                LockerRoom.vent.on("sportChanged", function(sportId) {
+                    $this.selectedSportId = sportId;
+                });
             },
             events: {
                 "click #goBackButton": "goBack",
@@ -43,13 +55,10 @@ define([
                 });
             },
             teamsClicked: function(e) {
-                //stubbed in the sport and state ids for now.
-                var sportId = '511ab6e60b17d5b59008b1a0';
-                var stateId = '511aaf720b17d5b59008b174';
                 teamVm.getModel(function(m) {
                     var v = new teamView({ model: m });
                     LockerRoom.main.show(v);
-                }, sportId, stateId);
+                }, this.selectedSportId, this.selectedStateId);
             },
             topicsClicked: function(e) {
                 var v = new topicView(); // model

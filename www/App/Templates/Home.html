@@ -1,17 +1,16 @@
 <div class="pull-left span12">
 Select Your State
-<select class="input-medium">
+<select id="statesList" class="input-medium">
 <% for (var i=0;i < States.length; i++) { %>
-	<option><%= States.at(i).get("name") %></option>
+	<option value="<%= States.at(i).get('_id') %>"><%= States.at(i).get("name") %></option>
 <%};%>
 </select>
 </div>
 <div class="pull-left span12">
 Select Your Sport
-<select class="input-medium">
+<select id="sportsList" class="input-medium">
 <% for (var i=0;i < Sports.length; i++) { %>
-	<option><%= Sports.at(i).get("name") %></option>
+	<option value="<%= Sports.at(i).get('_id') %>"><%= Sports.at(i).get("name") %></option>
 <%};%>
 </select>
-<a id="showTeams" class="button" href="javascript:void(0)">Show Teams</a>
 </div>
