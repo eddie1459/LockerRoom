@@ -17,6 +17,7 @@
             onShow: function (){
                 var homeView = new view();
                 this.content.show(homeView);
+                $("#goBack").hide();
             }
         });
 

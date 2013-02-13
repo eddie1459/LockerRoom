@@ -2,25 +2,25 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'Views/Teams',
-        'Lib/Require/Plugins/text!Templates/Home.html'
-    ], function ($, _, backbone, teamsView, templ) {
-        var view = backbone.View.extend({            
+        'marionette',
+        'Lib/Require/Plugins/text!Templates/Header.html'
+    ], function ($, _, backbone, marionette, templ) {
+        var view = marionette.Layout.extend({            
             template: templ,
             events: {
-                "click #showTeams": "showTeams"
+                "click #goBack": "goBack"
             },
             initialize: function () {
+                var that = this;
             },
             render: function () {
                 var template = _.template(templ);
                 this.$el.html( template );
-                $("#goBack").hide();
                 return this.el;
+                
             },
-            showTeams: function (){
-                var view = new teamsView();
-                LockerRoom.main.show(view);
+            goBack: function (view) {
+                window.history.back();
             }
         });
 

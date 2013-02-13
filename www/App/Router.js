@@ -3,9 +3,11 @@
         'underscore',
         'backbone',
         'marionette',
+        'Views/Teams',
         'Views/MainView',
-        'Views/Footer'
-    ], function ($, _, backbone, marionette, mainview, footerView) {
+        'Views/Footer',
+        'Views/Header'
+    ], function ($, _, backbone, marionette, teamView, mainview, footerView, headerView) {
         var appRouter = marionette.AppRouter.extend({
             routes: {
                 "": "defaultAction"
@@ -15,6 +17,8 @@
                 LockerRoom.main.show(LockerRoom.layout);
                 LockerRoom.layoutFooter = new footerView();
                 LockerRoom.footer.show(LockerRoom.layoutFooter);
+                LockerRoom.layoutHeader = new headerView();
+                LockerRoom.header.show(LockerRoom.layoutHeader);
             }
         });
 
@@ -29,7 +33,8 @@
 
             LockerRoom.addRegions({
                 main: "#main",
-                footer: "#footer"
+                footer: "#footer",
+                header: "#header"
             });
 
             backbone.history.start();
