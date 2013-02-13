@@ -2,5 +2,8 @@ curl --request GET http://localhost:3000/api/state/
 curl --request GET http://localhost:3000/api/sport/
 curl --request GET 'http://localhost:3000/api/team/?sportid=511ab6e60b17d5b59008b1a0&stateid=511aaf720b17d5b59008b174'
 
-// try this for posting topics and comments!!!
---request POST http://localhost:3000/api/notification/ -d {"userid":"corey","sourcekey":"1","sourcetype":"user","sourcedisplay":"snoop","message":"hellofromcurl","returnurl":"","imagepath":"","priority":"high","status":"unread","flag":"followup"} -H Content-Type:application/json
+// topic
+curl --request POST http://localhost:3000/api/topic/ -d '{"teamid":"511adcad9733e4cb494944e","name":"Eagles v Cardinals"}' -H Content-Type:application/json
+curl --request GET http://localhost:3000/api/topic/?teamid=511adcad9733e4cb494944e
+
+// comment

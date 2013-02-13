@@ -1,14 +1,12 @@
 function make(app, model, io) {
 	app.get('/api/topic', function(req, res) {
+		var teamid = req.query["teamid"];
+		console.log("teamid: " + teamid);
       return model.find({ 
-      	  sportid: req.params.sportid,
-      	  teamid: req.params.teamid,
-      	  count: req.params.count,		// get the last 20? this is also probably not suppose to be in the find
-      	  since: req.params.since		// get since? this is also probably not suppose to be in the find
+      	  teamid: teamid
         }, function(err, topics) {
 	    if (!err) {
 			res.contentType('application/json');
-			console.log(req.params);
 			
 			// TODO:  Order by timestamp
 			return res.send(topics);
@@ -19,6 +17,7 @@ function make(app, model, io) {
 	});
 
 	app.post('/api/topic', function(req, res) {	  
+	  console.log("POST REACHED!");
 	  var t = addTopic(model, io, req.body);	  
 	  return res.send(t);
 	});
@@ -29,7 +28,6 @@ function addTopic(model, io, data) {
 	console.log(data);
 
 	var t = new model({
-		sportid: data.sportid,
 		teamid: data.teamid,
 		name: data.name
 	});
