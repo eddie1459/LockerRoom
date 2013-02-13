@@ -17,9 +17,40 @@ function make(app, model, io) {
 	  });
 	});
 
+	// create (not update)
 	app.post('/api/comment', function(req, res) {	  
 	  var c = addComment(model, io, req.body);	  
 	  return res.send(c);
+	});
+
+	// update (technically this should create if not found)
+	app.put('/api/comment/:id', function(req, res) {
+		return model.findById(req.params.id, function(err, c) {
+		  c.topicid = req.body.topicid;
+		  c.commentcontent = req.body.commentcontent;
+		  c.timestamp = Date.now();
+		  return c.save(function(err) {
+		  	if (!err) {
+		  		console.log("updated");
+		  	} else {
+		  		console.log(err);
+		  	}
+		  	return res.send(c);
+		  });
+		});
+	});
+
+	app.delete('/api/comment/:id', function(req, res) {
+		return model.findById(req.params.id, function(err, c) {
+		  return c.remove(function(err) {
+		  	if (!err) {
+		  		console.log("deleted");
+		  	} else {
+		  		console.log(err);
+		  	}
+		  	return res.send(c);
+		  });
+		});
 	});
 }
 

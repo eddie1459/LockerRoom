@@ -16,10 +16,41 @@ function make(app, model, io) {
 	  });
 	});
 
+	// create (not update)
 	app.post('/api/topic', function(req, res) {	  
 	  console.log("POST REACHED!");
 	  var t = addTopic(model, io, req.body);	  
 	  return res.send(t);
+	});
+
+	// update (technically this should create if not found)
+	app.put('/api/topic/:id', function(req, res) {
+		return model.findById(req.params.id, function(err, t) {
+		  t.teamid = req.body.teamid;
+		  t.name = req.body.name;
+		  t.timestamp = Date.now();
+		  return t.save(function(err) {
+		  	if (!err) {
+		  		console.log("updated");
+		  	} else {
+		  		console.log(err);
+		  	}
+		  	return res.send(t);
+		  });
+		});
+	});
+
+	app.delete('/api/topic/:id', function(req, res) {
+		return model.findById(req.params.id, function(err, t) {
+		  return t.remove(function(err) {
+		  	if (!err) {
+		  		console.log("deleted");
+		  	} else {
+		  		console.log(err);
+		  	}
+		  	return res.send(t);
+		  });
+		});
 	});
 }
 
