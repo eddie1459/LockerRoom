@@ -10,7 +10,12 @@
     ], function ($, _, backbone, marionette, teamView, mainview, footerView, headerView) {
         var appRouter = marionette.AppRouter.extend({
             routes: {
-                "": "defaultAction"
+                "": "defaultAction",
+                "teams": "showTeams"
+            },
+            showTeams: function (){
+                LockerRoom.layoutTeam = new teamView();
+                LockerRoom.main.show(LockerRoom.layoutTeam);
             },
             defaultAction: function () {
                 LockerRoom.layout = new mainview();

@@ -27,6 +27,9 @@ define([
                 //TODO: need to show topics by teamId
                 var view = new topicsView();
                 LockerRoom.main.show(view);
+            },
+            goBack: function () {
+                backbone.history.navigate('', true);
             }
         });
 
