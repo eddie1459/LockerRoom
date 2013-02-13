@@ -2,11 +2,7 @@ define([
         'jquery',
         'underscore',
         'backbone',
-<<<<<<< HEAD
-	    'Views/Messages'
-=======
 	    'Views/Messages',
->>>>>>> Fixing some things the merge busted
         'Lib/Require/Plugins/text!Templates/Topics.html'
     ], function ($, _, backbone, msgsView, templ) {
         var view = backbone.View.extend({            
