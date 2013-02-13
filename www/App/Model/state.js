@@ -3,7 +3,7 @@ define([
   'backbone'
 ], function (_, backbone) {
     return backbone.Model.extend({
-        url: '/api/state,
+        url: '/api/state',
         defaults: function () {
             return {
                 name: '',

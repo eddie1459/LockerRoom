@@ -3,7 +3,7 @@ define([
   'backbone'
 ], function (_, backbone) {
     return backbone.Model.extend({
-        url: '/api/sport,
+        url: '/api/sport',
         defaults: function () {
             return {
                 name: '',
