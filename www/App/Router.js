@@ -1,5 +1,6 @@
 ﻿define([
         'jquery',
+        'jqueryMobile',
         'underscore',
         'backbone',
         'marionette',
@@ -7,7 +8,7 @@
         'Views/MainView',
         'Views/Footer',
         'Views/Header'
-    ], function ($, _, backbone, marionette, teamView, mainview, footerView, headerView) {
+    ], function ($, jqueryMobile, _, backbone, marionette, teamView, mainview, footerView, headerView) {
         var appRouter = marionette.AppRouter.extend({
             routes: {
                 "": "defaultAction"

@@ -24,10 +24,7 @@
         },
         "cordova": {
             exports: "cordova"
-        },
-        "jqueryMobile": {
-            deps: ["jquery"]
-        },
+        }
     }
 });
 
