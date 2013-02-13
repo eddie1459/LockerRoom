@@ -7,3 +7,5 @@ curl --request POST http://localhost:3000/api/topic/ -d '{"teamid":"511adcad9733
 curl --request GET http://localhost:3000/api/topic/?teamid=511adcad9733e4cb494944e
 
 // comment
+curl --request POST http://localhost:3000/api/comment/ -d '{"topicid":"511ae9898477e07103000001","contentcomment":"Cards Win Cards Win"}' -H Content-Type:application/json
+curl --request GET http://localhost:3000/api/comment/?topicid=511ae9898477e07103000001
