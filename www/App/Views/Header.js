@@ -7,8 +7,10 @@ define([
         'Views/Teams',
         'Views/Topics',
         'Views/Messages',
+        'Collection/states',
+        'Collection/sports',
         'Lib/Require/Plugins/text!Templates/Header.html'
-    ], function ($, _, backbone, marionette, homeView, teamView, topicView, commentView, templ) {
+    ], function ($, _, backbone, marionette, homeView, teamView, topicView, commentView, states, sports, templ) {
         var view = marionette.Layout.extend({            
             template: templ,
             initialize: function () {
