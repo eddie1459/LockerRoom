@@ -31,9 +31,6 @@ header, footer{
   background-color: rgb(3, 3, 3);
 }
 
-#goBack {
-  display:none;
-}
 
 h1{
     margin:0;
@@ -324,7 +321,6 @@ body {
     padding-right: 5px;
     font-family: arial,sans-serif;
     overflow:auto;
-    width:400px;
 }
 
 .content{

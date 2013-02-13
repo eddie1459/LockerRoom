@@ -15,7 +15,6 @@ define([
             render: function () {
                 var template = _.template(templ);
                 this.$el.html( template );
-                $("#goBack").show();
                 return this.el;
             },
             showTopics: function (evt) {
