@@ -55,7 +55,7 @@ function make(app, model, io) {
 }
 
 function addComment(model, io, data) {
-	console.log("Topic posted: ");
+	console.log("Comment posted: ");
 	console.log(data);
 
 	var c = new model({
