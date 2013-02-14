@@ -72,6 +72,7 @@ define([
                 teamVm.getModel(function(m) {
                     var v = new teamView({ model: m });
                     LockerRoom.main.show(v);
+                    var myScroll = new iScroll('wrapper');
                 }, this.selectedSportId, this.selectedStateId);
             },
             topicsClicked: function(e) {

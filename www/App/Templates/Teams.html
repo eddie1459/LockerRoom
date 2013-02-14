@@ -1,8 +1,12 @@
-<ul class="nav nav-tabs nav-stacked">
-	<% for (var i=0;i < Teams.length; i++) { %>
-		<li data-teamid="<%= Teams.at(i).get('_id') %>">
-			<a href="javascript:void(0)"><%= Teams.at(i).get("name") %>
-			</a>
-		</li>
-	<% }; %>
-</ul>
+<div id="wrapper">
+	<div id="scroller">
+		<ul>
+			<% for (var i=0;i < Teams.length; i++) { %>
+				<li data-teamid="<%= Teams.at(i).get('_id') %>">
+					<a href="javascript:void(0)"><%= Teams.at(i).get("name") %>
+					</a>
+				</li>
+			<% }; %>
+		</ul>
+	</div>
+</div>

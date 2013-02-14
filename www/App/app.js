@@ -5,6 +5,7 @@ define([
         'Router'        
     ], function ($, _, backbone, router) {
         var initialize = function () {
+            document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
             backbone.Marionette.TemplateCache.prototype.loadTemplate = function (templateId) {
                 // Marionette expects "templateId" to be the ID of a DOM element.
                 // But with RequireJS, templateId is actually the full text of the template.

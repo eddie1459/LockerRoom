@@ -4,7 +4,6 @@
         "underscore": 'Lib/Underscore/underscore-min',
         "backbone": 'Lib/Backbone/backbone-min',
         "marionette": 'Lib/Backbone/backbone.marionette',
-        "iscroll": 'Lib/iscroll/iscroll-lite',
         "cordova": 'Lib/cordova-2.3.0'
     },
     shims: {

@@ -8,7 +8,7 @@ define([
         var view = marionette.ItemView.extend({            
             template: templ,
             events: {
-                "click li": "showTopics"
+                "click a": "showTopics"
             },
             initialize: function () {
             },
