@@ -29,7 +29,7 @@ define([
                 } else if (this.currentIndex == 2) {
                     this.topicsClicked(e);
                 } else if (this.currentIndex == 3) {
-                    this.teamsClicked(e);
+                    this.commentsClicked(e);
                 }
             },
             initialize: function () {
@@ -40,10 +40,14 @@ define([
                 LockerRoom.vent.on("showTopics", function(e, teamId) { 
                     $this.selectedTeamId = teamId;
                     $this.topicsClicked(e);
+
+                    $this.currentIndex = $this.currentIndex + 1;
                 });
                 LockerRoom.vent.on("showComments", function(e, topicId) {
                     $this.selectedTopicId = topicId;
                     $this.commentsClicked(e);
+
+                    $this.currentIndex = $this.currentIndex + 1;
                 });
 
                 LockerRoom.vent.on("stateChanged", function(stateId) {
