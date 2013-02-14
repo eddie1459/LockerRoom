@@ -1,10 +1,14 @@
-<div class="container">
-    <div class="msgUser">User1</div>
-    <div class="content">Hey, what is going on over there? I don't understand what you are trying to say</div>
-    <div class="msgTime">7:50 pm</div>
+<div class="well">
+	<ul class="nav nav-tabs nav-stacked">
+		<% for (var i=0;i < Comments.length; i++) { %>
+			<li data-commentid="<%= Comments.at(i).get('_id') %>">
+				<div class="msgUser">Fake User Name</div>
+    			<div class="content"><%= Comments.at(i).get("commentcontent") %></div>
+    			<div class="msgTime"><%= Comments.at(i).get("timestamp") %></div>
+			</li>
+		<% }; %>
+	</ul>
 </div>
-<div class="container">
-    <div class="msgUser">User2</div>
-    <div class="content">Huh?  Are you talking to me?   I need to write some more lines to see how this stacks and wraps</div>
-    <div class="msgTime">7:48 pm</div>
+<div class="pull-right input-large">
+	<a id="createComment" href="javascript:void(0)" class="button">Create a comment</a>
 </div>

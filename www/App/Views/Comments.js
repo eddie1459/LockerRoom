@@ -2,10 +2,10 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'Views/Comments',
+        'marionette',
         'Lib/Require/Plugins/text!Templates/Comments.html'
-    ], function ($, _, backbone, msgsView, templ) {
-        var view = backbone.View.extend({            
+    ], function ($, _, backbone, marionette, templ) {
+        var view = marionette.ItemView.extend({            
             template: templ,
             initialize: function () {
                 // TODO:  Get this from config
@@ -17,11 +17,6 @@ define([
 
                     // TODO: Prepend the new comment to the top of our div!
                 //});
-            },
-            render: function () {
-                var template = _.template(templ);
-                this.$el.html( template );
-                return this.el;
             }
         });
 

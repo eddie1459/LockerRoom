@@ -12,7 +12,7 @@ define([
                     },
                     success: function(comments) {
                         var model = backbone.Model.extend();
-                        var m = new model({ Comments: comments });
+                        var m = new model({ Comments: comments, TopicId: topicId });
                         callback(m);
                     }
                 });

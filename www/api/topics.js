@@ -19,8 +19,9 @@ function make(app, model, io) {
 	// create (not update)
 	app.post('/api/topic', function(req, res) {	  
 	  console.log("POST REACHED!");
-	  var t = addTopic(model, io, req.body);	  
-	  return res.send(t);
+	  addTopic(model, io, req.body, function(r) {
+	  	res.send(r);
+	  });	  
 	});
 
 	// update (technically this should create if not found)
@@ -54,7 +55,7 @@ function make(app, model, io) {
 	});
 }
 
-function addTopic(model, io, data) {
+function addTopic(model, io, data, result) {
 	console.log("Topic posted: ");
 	console.log(data);
 
@@ -62,14 +63,16 @@ function addTopic(model, io, data) {
 		teamid: data.teamid,
 		name: data.name
 	});
-	t.save(function(err) {
+	t.save(function(err, t3) {
 		if (!err) {
 			io.sockets.clients().forEach(function (socket) {
-		 		socket.broadcast.emit('topics-' + data.teamid, t);
+		 		socket.broadcast.emit('topics-' + data.teamid, t2);
 		  	});
+		  	console.log(t3);
+		  	result(t3);
 		} else {
-			// TODO:  Report problem back to the user...
-			return console.log(err);
+			console.log(err);
+			result(err);
 		}
 	});
 }
