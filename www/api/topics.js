@@ -18,7 +18,7 @@ function make(app, model, io) {
 
 	// create (not update)
 	app.post('/api/topic', function(req, res) {	  
-	  console.log("POST REACHED!");
+	  console.log("TOPIC POST REACHED!");
 	  addTopic(model, io, req.body, function(r) {
 	  	res.send(r);
 	  });	  
@@ -63,13 +63,13 @@ function addTopic(model, io, data, result) {
 		teamid: data.teamid,
 		name: data.name
 	});
-	t.save(function(err, t3) {
+	t.save(function(err, result) {
 		if (!err) {
 			io.sockets.clients().forEach(function (socket) {
-		 		socket.broadcast.emit('topics-' + data.teamid, t2);
+		 		socket.broadcast.emit('topics-' + data.teamid, result);
 		  	});
-		  	console.log(t3);
-		  	result(t3);
+		  	console.log(result);
+		  	result(result);
 		} else {
 			console.log(err);
 			result(err);

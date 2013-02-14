@@ -19,8 +19,10 @@ function make(app, model, io) {
 
 	// create (not update)
 	app.post('/api/comment', function(req, res) {	  
-	  var c = addComment(model, io, req.body);	  
-	  return res.send(c);
+		console.log("COMMENT POST REACHED!");
+	  	addComment(model, io, req.body, function(c) {
+	  		res.send(c);
+	 	});	  
 	});
 
 	// update (technically this should create if not found)
@@ -54,7 +56,7 @@ function make(app, model, io) {
 	});
 }
 
-function addComment(model, io, data) {
+function addComment(model, io, data, result) {
 	console.log("Comment posted: ");
 	console.log(data);
 
@@ -62,14 +64,16 @@ function addComment(model, io, data) {
 		topicid: data.topicid,
 		commentcontent: data.contentcomment
 	});
-	c.save(function(err) {
+	c.save(function(err, r) {
 		if (!err) {
 			io.sockets.clients().forEach(function (socket) {
-		 		socket.broadcast.emit('comments-' + data.topicid, c);
+		 		socket.broadcast.emit('comments-' + data.topicid, r);
 		  	});
+		  	console.log(r);
+			result(r);
 		} else {
-			// TODO:  Report problem back to the user...
-			return console.log(err);
+			console.log(err);
+			result(err);
 		}
 	});
 }
