@@ -22,7 +22,7 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.set('mongodbconn', 'mongodb://nodejitsu:b2b6257726a49559a610f26d5d82ad7b@linus.mongohq.com:10094/nodejitsudb9733627908');
-  app.set('socketaddress', 'http://notifier.jit.su');
+  app.set('socketaddress', 'http://lockerroom.jit.su');
 });
 
 // TODO:  Routes are cooler because we can feed em configuration options!

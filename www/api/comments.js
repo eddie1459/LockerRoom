@@ -62,7 +62,7 @@ function addComment(model, io, data, result) {
 
 	var c = new model({
 		topicid: data.topicid,
-		commentcontent: data.contentcomment
+		commentcontent: data.commentcontent
 	});
 	c.save(function(err, r) {
 		if (!err) {

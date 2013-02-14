@@ -63,13 +63,13 @@ function addTopic(model, io, data, result) {
 		teamid: data.teamid,
 		name: data.name
 	});
-	t.save(function(err, result) {
+	t.save(function(err, r) {
 		if (!err) {
 			io.sockets.clients().forEach(function (socket) {
-		 		socket.broadcast.emit('topics-' + data.teamid, result);
+		 		socket.broadcast.emit('topics-' + data.teamid, r);
 		  	});
-		  	console.log(result);
-		  	result(result);
+		  	console.log(r);
+		  	result(r);
 		} else {
 			console.log(err);
 			result(err);
