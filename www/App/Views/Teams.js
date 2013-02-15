@@ -19,6 +19,9 @@ define([
             },
             pullDownAction: function  () {
                 
+            },
+            onShow: function() {
+                $('#wrapper').trigger('create');
             }
         });
 
