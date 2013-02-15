@@ -16,6 +16,9 @@ define([
                 var teamId = $(e.currentTarget).data('teamid');
 
                 LockerRoom.vent.trigger("showTopics", e, teamId);
+            },
+            pullDownAction: function  () {
+                
             }
         });
 

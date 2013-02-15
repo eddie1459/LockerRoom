@@ -1,6 +1,9 @@
 <div id="wrapper">
 	<div id="scroller">
-		<ul>
+		<div id="pullDown" class="">
+			<span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to refresh...</span>
+		</div>
+		<ul id="thelist">
 			<% for (var i=0;i < Teams.length; i++) { %>
 				<li data-teamid="<%= Teams.at(i).get('_id') %>">
 					<a href="javascript:void(0)"><%= Teams.at(i).get("name") %>
