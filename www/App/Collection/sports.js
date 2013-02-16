@@ -3,7 +3,9 @@ define([
   'Model/sport'
 ], function (backbone, sport) {
     return backbone.Collection.extend({
-        url: '/api/sport/',
+        url: function (){
+            return LockerRoom.defaultUrl + '/api/sport';
+        },
         model: sport
     });
 });

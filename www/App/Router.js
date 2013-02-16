@@ -33,6 +33,10 @@
 
             LockerRoom = new marionette.Application();
 
+            LockerRoom.defaultUrl = "http://localhost:3000";
+            //production??
+            //LockerRoom.defaultUrl = "";
+
             // kicking this off here to support anything that needs it early on
             LockerRoom.localvent = new marionette.EventAggregator();
 

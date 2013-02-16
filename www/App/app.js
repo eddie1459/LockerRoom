@@ -2,7 +2,7 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'Router'        
+        'Router'   
     ], function ($, _, backbone, router) {
         var initialize = function () {
             backbone.Marionette.TemplateCache.prototype.loadTemplate = function (templateId) {

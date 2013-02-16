@@ -3,7 +3,9 @@ define([
   'Model/state'
 ], function (backbone, state) {
     return backbone.Collection.extend({
-        url: '/api/state/',
+        url: function (){
+            return LockerRoom.defaultUrl + '/api/state';
+        },
         model: state
     });
 });

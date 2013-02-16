@@ -3,7 +3,9 @@ define([
   'backbone'
 ], function (_, backbone) {
     return backbone.Model.extend({
-        url: '/api/sport',
+        url: function (){
+            return LockerRoom.defaultUrl + '/api/sport';
+        },
         defaults: function () {
             return {
                 name: '',

@@ -3,7 +3,9 @@ define([
   'backbone'
 ], function (_, backbone) {
     return backbone.Model.extend({
-        url: '/api/comment',
+        url: function (){
+            return LockerRoom.defaultUrl + '/api/comment';
+        },
         defaults: function () {
             return {
                 topicid: '',
