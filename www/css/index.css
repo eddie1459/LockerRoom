@@ -20,6 +20,16 @@
     float: left;
 }
 
+
+.ui-icon-align-justify {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.ui-footer .ui-btn-icon-notext, .ui-header .ui-btn-icon-notext {
+  top: 0px;
+}
+
 #scroller {
   position:absolute; z-index:1;
   -webkit-tap-highlight-color:rgba(0,0,0,0);
