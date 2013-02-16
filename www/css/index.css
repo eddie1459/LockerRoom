@@ -26,6 +26,11 @@
     box-shadow: none;
 }
 
+.ui-icon-envelope {
+    background-color: transparent;
+    box-shadow: none;
+}
+
 .ui-footer .ui-btn-icon-notext, .ui-header .ui-btn-icon-notext {
   top: 0px;
 }
