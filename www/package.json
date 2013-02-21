@@ -1,6 +1,6 @@
 {
   "name": "LockerRoom",
-  "version": "0.0.1-35",
+  "version": "0.0.1-38",
   "private": true,
   "scripts": {
     "start": "node server.js"
@@ -10,7 +10,10 @@
     "jade": "*",
     "less-middleware": "*",
     "mongoose": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "passport": "*",
+    "passport-facebook": "*",
+    "passport-google": "*"
   },
   "subdomain": "lockerroom",
   "engines": {
