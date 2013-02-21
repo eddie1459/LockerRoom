@@ -22,9 +22,11 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
+
+//change the lockerroom.jit.su to http://localhost:3000 for testing locally
 passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost:3000/auth/google/return',
-    realm: 'http://localhost:3000/'
+    returnURL: 'http://lockerroom.jit.su/auth/google/return',
+    realm: 'http://lockerroom.jit.su/'
   },
   function(identifier, profile, done) {
     console.log("in google auth function");
@@ -44,7 +46,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: 449861405085618,
     clientSecret: '9429d223349512284f0a15d52186447d',
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "http://lockerroom.jit.su/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
