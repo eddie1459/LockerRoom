@@ -60,7 +60,7 @@ define([
             },
             events: {
                 "click #goBackButton": "goBack",
-                "click #goForwardButton": "goForward",
+                "click #goForwardButton": "goForward"
             },
             homeClicked: function(e) {
                 homeVm.getModel(function(m) {
