@@ -15,9 +15,8 @@ define([
             initialize: function () {
                 // TODO:  Get this from config
                 //var url = "#{socketaddress}";
-                var url = "http://localhost:3000"
-                var socket = io.connect(url);
-                socket.on('get_comment'), function (c) {
+                
+                LockerRoom.SocketConnection.socket.on('get_comment'), function (c) {
                     console.log("Comment published");
                     $('#commentsList').prepend(data.topic);
                     // TODO: Prepend the new comment to the top of our div!
@@ -37,8 +36,7 @@ define([
                 newComment.save({}, {
                     success: function (m, r) {
                         var msg = "<li data-commentid=" + m.get('_id') + "><a href='javascript:void(0)'>" + m.get('commentcontent') + "</a></li>";
-                        var socket = io.connect('http://localhost:3000');
-                        socket.emit('comment',{topic: msg});
+                        LockerRoom.SocketConnection.socket.emit('comment',{topic: msg});
                         $('#commentsList').prepend(msg);
                         $('#saveCommentRegion').hide();
                     },
