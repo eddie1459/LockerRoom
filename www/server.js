@@ -162,10 +162,12 @@ var comments = require('./api/comments.js');
 // begin socket.io config
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
+  console.log('Socket Connection Made - Server Side')
   socket.on('comment', function(data) {
     console.log("Socket Comment Hit!");
+    socket.emit('get_comment', data.topic);
     socket.broadcast.emit('get_comment', data.topic);
-    });
+  });
 });
 // end socket.io config
 
