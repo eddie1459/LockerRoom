@@ -163,6 +163,7 @@ var comments = require('./api/comments.js');
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
   socket.on('comment', function(data) {
+    console.log("Socket Comment Hit!");
     socket.broadcast.emit('get_comment',data);
     });
 });
