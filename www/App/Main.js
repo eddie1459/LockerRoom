@@ -26,7 +26,7 @@
         },
         "cordova": {
             exports: "cordova"
-        },
+        }
     }
 });
 

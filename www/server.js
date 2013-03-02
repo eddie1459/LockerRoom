@@ -162,7 +162,9 @@ var comments = require('./api/comments.js');
 // begin socket.io config
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
-  // no reason to hookup anything here, yet...
+  socket.on('comment', function(data) {
+    socket.broadcast.emit('get_comment',data);
+    });
 });
 // end socket.io config
 
