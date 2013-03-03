@@ -13,15 +13,9 @@ define([
                 "click #saveComment": "saveComment"
             },
             initialize: function () {
-                // TODO:  Get this from config
-                //var url = "#{socketaddress}";
-                
-                LockerRoom.SocketConnection.on('get_comment'), function (data) {
-                    console.log("Comment published");
-                    alert("Comment published");
-                    // $('#commentsList').prepend(data.topic);
-                    // TODO: Prepend the new comment to the top of our div!
-                };
+                LockerRoom.SocketConnection.on('get_comment', function (data) {
+                     $('#commentsList').prepend(data.data);
+                });
             },
             onShow: function() {
                 $('#saveCommentRegion').hide();
@@ -37,7 +31,7 @@ define([
                 newComment.save({}, {
                     success: function (m, r) {
                         var msg = "<li data-commentid=" + m.get('_id') + "><a href='javascript:void(0)'>" + m.get('commentcontent') + "</a></li>";
-                        LockerRoom.SocketConnection.emit('comment',{topic: msg});
+                        LockerRoom.SocketConnection.emit('comment',{data: msg});
                         $('#commentsList').prepend(msg);
                         $('#saveCommentRegion').hide();
                     },
