@@ -131,7 +131,6 @@ define([
                 this.currentIndex = i;
 
                 this.navigate(e);
-
             },
             goForward: function(e) {
                 if (this.currentIndex == 3) { return; }

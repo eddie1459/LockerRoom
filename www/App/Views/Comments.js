@@ -18,6 +18,9 @@ define([
                      $('#commentsList').prepend(data);
                 });
             },
+            onClose: function() {
+                LockerRoom.SocketConnection.emit("leaveRoom", {room: this.model.get("TopicId")});
+            },
             onShow: function() {
                 $('#saveCommentRegion').hide();
             },

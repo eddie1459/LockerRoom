@@ -163,6 +163,9 @@ var comments = require('./api/comments.js');
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
   console.log('Socket Connection Made - Server Side');
+  socket.on("leaveRoom", function(data){
+      socket.leave(data.room);
+  });
   socket.on("setRoom", function(data){
       socket.join(data.room);
   });
