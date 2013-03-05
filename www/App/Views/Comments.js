@@ -13,8 +13,9 @@ define([
                 "click #saveComment": "saveComment"
             },
             initialize: function () {
-                LockerRoom.SocketConnection.on('get_comment', function (data) {
-                     $('#commentsList').prepend(data.data);
+                LockerRoom.SocketConnection.emit("setRoom", {room: this.model.get("TopicId")});
+                LockerRoom.SocketConnection.on('comment', function (data) {
+                     $('#commentsList').prepend(data);
                 });
             },
             onShow: function() {
@@ -24,6 +25,7 @@ define([
                 $('#saveCommentRegion').show();
             },
             saveComment: function(e) {
+                var that = this;
                 var cc = $('#newCommentContent').val();
 
                 var newComment = new comment({ commentcontent: cc, topicid: this.model.get("TopicId") });
@@ -31,8 +33,7 @@ define([
                 newComment.save({}, {
                     success: function (m, r) {
                         var msg = "<li data-commentid=" + m.get('_id') + "><a href='javascript:void(0)'>" + m.get('commentcontent') + "</a></li>";
-                        LockerRoom.SocketConnection.emit('comment',{data: msg});
-                        $('#commentsList').prepend(msg);
+                        LockerRoom.SocketConnection.emit('comment',{ comment: msg, room: that.model.get("TopicId")} );
                         $('#saveCommentRegion').hide();
                     },
                     error: function (m, r) {

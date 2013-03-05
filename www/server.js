@@ -163,8 +163,12 @@ var comments = require('./api/comments.js');
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
   console.log('Socket Connection Made - Server Side');
+  socket.on("setRoom", function(data){
+      socket.join(data.room);
+  });
+
   socket.on('comment', function(data) {
-    socket.broadcast.emit('get_comment', data);
+    io.sockets.in(data.room).emit('comment', data.comment);
   });
 });
 // end socket.io config
