@@ -174,9 +174,7 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('comment', function(data) {
     console.log('Emitting comment');
-    //io.sockets.in(data.room).emit('comment', data.comment);
     socket.broadcast.to(data.room).emit('comment', data.comment);
-    //socket.broadcast.to(data.room).emit(data.comment);
   });
 });
 // end socket.io config

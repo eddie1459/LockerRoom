@@ -39,10 +39,6 @@
             // kicking this off here to support anything that needs it early on
             LockerRoom.localvent = new marionette.EventAggregator();
 
-            var url = "http://localhost:3000";
-            var socket = io.connect(url);
-            LockerRoom.SocketConnection = socket;
-
             LockerRoom.addRegions({
                 header: "#header",
                 main: "#main",

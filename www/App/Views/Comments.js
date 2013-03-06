@@ -13,13 +13,22 @@ define([
                 "click #saveComment": "saveComment"
             },
             initialize: function () {
-                LockerRoom.SocketConnection.emit("setRoom", {room: this.model.get("TopicId")});
-                LockerRoom.SocketConnection.on('comment', function (data) {
+                var that = this;
+                //creating a new socket each time the comments
+                //are loaded because the messages are getting back
+                //to this client, I think was due to having only
+                //one socket for the whole app
+                var url = "http://localhost:3000";
+                this.socket = io.connect(url);
+                this.socket.on('connect', function () {
+                    that.socket.emit("setRoom", {room: that.model.get("TopicId")});
+                });
+                this.socket.on('comment', function (data) {
                      $('#commentsList').prepend(data);
                 });
             },
             onClose: function() {
-                LockerRoom.SocketConnection.emit("leaveRoom", {room: this.model.get("TopicId")});
+                this.socket.emit("leaveRoom", {room: this.model.get("TopicId")});
             },
             onShow: function() {
                 $('#saveCommentRegion').hide();
@@ -36,7 +45,7 @@ define([
                 newComment.save({}, {
                     success: function (m, r) {
                         var msg = "<li data-commentid=" + m.get('_id') + "><a href='javascript:void(0)'>" + m.get('commentcontent') + "</a></li>";
-                        LockerRoom.SocketConnection.emit('comment',{ comment: msg, room: that.model.get("TopicId")} );
+                        that.socket.emit('comment',{ comment: msg, room: that.model.get("TopicId")} );
                         $('#commentsList').prepend(msg);
                         $('#saveCommentRegion').hide();
                     },
