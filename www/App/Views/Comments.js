@@ -37,6 +37,7 @@ define([
                     success: function (m, r) {
                         var msg = "<li data-commentid=" + m.get('_id') + "><a href='javascript:void(0)'>" + m.get('commentcontent') + "</a></li>";
                         LockerRoom.SocketConnection.emit('comment',{ comment: msg, room: that.model.get("TopicId")} );
+                        $('#commentsList').prepend(msg);
                         $('#saveCommentRegion').hide();
                     },
                     error: function (m, r) {

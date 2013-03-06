@@ -164,14 +164,19 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
   console.log('Socket Connection Made - Server Side');
   socket.on("leaveRoom", function(data){
+      console.log('Leaving room ' + data.room);
       socket.leave(data.room);
   });
   socket.on("setRoom", function(data){
+      console.log('Joining room ' + data.room);
       socket.join(data.room);
   });
 
   socket.on('comment', function(data) {
-    io.sockets.in(data.room).emit('comment', data.comment);
+    console.log('Emitting comment');
+    //io.sockets.in(data.room).emit('comment', data.comment);
+    socket.broadcast.to(data.room).emit('comment', data.comment);
+    //socket.broadcast.to(data.room).emit(data.comment);
   });
 });
 // end socket.io config
