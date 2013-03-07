@@ -1,15 +1,13 @@
 Enjoy the game!
-<div class="well">
-	<ul id="commentsList" class="nav nav-tabs nav-stacked">
-		<% for (var i=0;i < Comments.length; i++) { %>
-			<li data-commentid="<%= Comments.at(i).get('_id') %>">
-				<div class="msgUser">Fake User Name</div>
-    			<div class="content"><%= Comments.at(i).get("commentcontent") %></div>
-    			<div class="msgTime"><%= Comments.at(i).get("timestamp") %></div>
-			</li>
-		<% }; %>
-	</ul>
-</div>
+<ul id="commentsList" class="nav nav-tabs nav-stacked">
+	<% for (var i=0;i < Comments.length; i++) { %>
+		<li data-commentid="<%= Comments.at(i).get('_id') %>">
+			<div class="msgUser">Fake User Name</div>
+			<div class="content"><%= Comments.at(i).get("commentcontent") %></div>
+			<div class="msgTime"><%= Comments.at(i).get("timestamp") %></div>
+		</li>
+	<% }; %>
+</ul>
 <div id="saveCommentRegion">
 	<textarea id="newCommentContent"></textarea>
 	<a id="saveComment" href="javascript:void(0)" class="button">Save comment</a>

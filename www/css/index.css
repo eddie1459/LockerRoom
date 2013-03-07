@@ -1,7 +1,3 @@
-.well {
-  background-color: rgb(3, 3, 3);
-}
-
 #wrapper {
     position:absolute;
     z-index:1;
@@ -19,6 +15,11 @@
     font-size:10px;
     float: left;
 }
+
+.content {
+    padding: 17px;
+}
+
 
 #settings {
   display: inline;
