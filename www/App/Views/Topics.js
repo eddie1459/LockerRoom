@@ -26,6 +26,7 @@ define([
             },
             onShow: function() {
                 $('#saveTopicRegion').hide();
+                $('#wrapper').trigger('create');
             },
             showComments: function(e) {
                 var topicId = $(e.currentTarget).data('topicid');

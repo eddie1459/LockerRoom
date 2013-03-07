@@ -1,17 +1,19 @@
 Choose a topic
-<div>
-	<ul id="topicsList" class="nav nav-tabs nav-stacked">
-		<% for (var i=0;i < Topics.length; i++) { %>
-			<li data-topicid="<%= Topics.at(i).get('_id') %>">
-				<a href="javascript:void(0)"><%= Topics.at(i).get("name") %></a>
-			</li>
-		<% }; %>
-	</ul>
-</div>
-<div id="saveTopicRegion">
-	<textarea id="newTopicContent"></textarea>
-	<a id="saveTopic" href="javascript:void(0)" class="button">Save topic</a>
-</div>
-<div class="pull-right input-large">
-	<a id="createTopic" href="javascript:void(0)" class="button">Create a topic</a>
+<div id="wrapper">
+	<div id="scroller">
+		<ul id="topicsList" class="nav nav-tabs nav-stacked">
+			<% for (var i=0;i < Topics.length; i++) { %>
+				<li data-topicid="<%= Topics.at(i).get('_id') %>">
+					<a href="javascript:void(0)"><%= Topics.at(i).get("name") %></a>
+				</li>
+			<% }; %>
+		</ul>
+		<div id="saveTopicRegion">
+			<textarea id="newTopicContent"></textarea>
+			<a id="saveTopic" href="javascript:void(0)" class="button">Save topic</a>
+		</div>
+		<div class="pull-right input-large">
+			<a id="createTopic" href="javascript:void(0)" class="button">Create a topic</a>
+		</div>
+	</div>
 </div>
