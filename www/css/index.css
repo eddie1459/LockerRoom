@@ -16,10 +16,18 @@
     float: left;
 }
 
+.commentBorder {
+  border: solid;
+  border-width: 1px;
+}
+
 .content {
     padding: 17px;
 }
 
+#commentsList {
+    list-style: none;
+}
 
 #settings {
   display: inline;

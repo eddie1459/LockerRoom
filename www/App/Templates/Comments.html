@@ -1,11 +1,13 @@
 Enjoy the game!
-<ul id="commentsList" class="nav nav-tabs nav-stacked">
+<ul id="commentsList">
 	<% for (var i=0;i < Comments.length; i++) { %>
+		<div class="commentBorder">
 		<li data-commentid="<%= Comments.at(i).get('_id') %>">
 			<div class="msgUser">Fake User Name</div>
+			<div class="msgTime"><%= new Date(Comments.at(i).get("timestamp")) %></div>
 			<div class="content"><%= Comments.at(i).get("commentcontent") %></div>
-			<div class="msgTime"><%= Comments.at(i).get("timestamp") %></div>
 		</li>
+		</div>
 	<% }; %>
 </ul>
 <div id="saveCommentRegion">
