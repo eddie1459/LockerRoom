@@ -7,13 +7,6 @@ var express = require('express'),
     http = require('http'),
     mongoose = require('mongoose');
 
-// Passport session setup.
-//   To support persistent login sessions, Passport needs to be able to
-//   serialize users into and deserialize users out of the session.  Typically,
-//   this will be as simple as storing the user ID when serializing, and finding
-//   the user by ID when deserializing.  However, since this example does not
-//   have a database of user records, the complete Facebook profile is serialized
-//   and deserialized.
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -23,43 +16,49 @@ passport.deserializeUser(function(obj, done) {
 });
 
 
-//change the lockerroom.jit.su to http://localhost:3000 for testing locally
 passport.use(new GoogleStrategy({
     returnURL: 'http://lockerroom.jit.su/auth/google/return',
     realm: 'http://lockerroom.jit.su/'
+    //testing
+    //returnURL: 'http://localhost:3000/auth/google/return',
+    //realm: 'http://localhost:3000/'
   },
   function(identifier, profile, done) {
-    console.log("in google auth function");
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-      
-      // To keep the example simple, the user's Google profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Google account with a user record in your database,
-      // and return that user instead.
-      profile.identifier = identifier;
-      return done(null, profile);
+    console.log(profile.name.givenName);
+    userModel.findOne({ name: profile.name.givenName }, function (err, userFound) {
+      if (err) { console.log(err) };
+      console.log(userFound);
+      if (!userFound) {
+        var user = new userModel({ name: profile.name.givenName, openId: identifier} );
+        user.save(function(err) {
+          console.log("User Saved!")
+        });
+      };
     });
+    
+    return done(null, profile);
   }
 ));
 
-passport.use(new FacebookStrategy({
-    clientID: 449861405085618,
-    clientSecret: '9429d223349512284f0a15d52186447d',
-    callbackURL: "http://lockerroom.jit.su/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
+//this doesn't work locally
+//passport.use(new FacebookStrategy({
+//    clientID: 449861405085618,
+//    clientSecret: '9429d223349512284f0a15d52186447d',
+//    callbackURL: "http://lockerroom.jit.su/auth/facebook/callback"
+    //callbackURL: "http://localhost:3000/auth/facebook/callback"
+//  },
+//  function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
-    process.nextTick(function () {
+//    process.nextTick(function () {
       
       // To keep the example simple, the user's Facebook profile is returned to
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Facebook account with a user record in your database,
       // and return that user instead.
-      return done(null, profile);
-    });
-  }
-));
+//      return done(null, profile);
+//    });
+//  }
+//));
 
 var app = express();
 
@@ -74,6 +73,28 @@ app.configure(function () {
     app.use(passport.session());
     app.use(app.router);
 });
+
+app.configure('development', function(){
+  app.use(express.errorHandler());
+  app.set('mongodbconn', 'mongodb://localhost/lockerroomdb');
+  app.set('socketaddress', 'http://localhost:3000');
+});
+
+app.configure('production', function(){
+  app.set('mongodbconn', 'mongodb://nodejitsu:b2b6257726a49559a610f26d5d82ad7b@linus.mongohq.com:10094/nodejitsudb9733627908');
+  app.set('socketaddress', 'http://lockerroom.jit.su');
+});
+
+// begin db stuff
+var db = mongoose.connect(app.get('mongodbconn'));
+var Schema = mongoose.Schema;
+var stateModel = require('./model/state.js').make(Schema, mongoose);
+var sportModel = require('./model/sport.js').make(Schema, mongoose);
+var teamModel = require('./model/team.js').make(Schema, mongoose);
+var topicModel = require('./model/topic.js').make(Schema, mongoose);
+var commentModel = require('./model/comment.js').make(Schema, mongoose);
+var userModel = require('./model/user.js').make(Schema, mongoose);
+// end db stuff
 
 // Redirect the user to Facebook for authentication.  When complete,
 // Facebook will redirect the user back to the application at
@@ -95,6 +116,7 @@ app.get('/auth/google/return',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
+    console.log(res);
     res.redirect('/');
   });
 
@@ -119,17 +141,6 @@ function ensureAuthenticated(req, res, next) {
 
 app.use(express.errorHandler());
 
-app.configure('development', function(){
-  app.use(express.errorHandler());
-  app.set('mongodbconn', 'mongodb://localhost/lockerroomdb');
-  app.set('socketaddress', 'http://localhost:3000');
-});
-
-app.configure('production', function(){
-  app.set('mongodbconn', 'mongodb://nodejitsu:b2b6257726a49559a610f26d5d82ad7b@linus.mongohq.com:10094/nodejitsudb9733627908');
-  app.set('socketaddress', 'http://lockerroom.jit.su');
-});
-
 // TODO:  Routes are cooler because we can feed em configuration options!
 app.get("/", function (req, res) {
     res.render('index', { user: req.user });
@@ -140,24 +151,6 @@ var server = http.createServer(app);
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
-
-// begin db stuff
-var db = mongoose.connect(app.get('mongodbconn'));
-var Schema = mongoose.Schema;
-var stateModel = require('./model/state.js').make(Schema, mongoose);
-var sportModel = require('./model/sport.js').make(Schema, mongoose);
-var teamModel = require('./model/team.js').make(Schema, mongoose);
-var topicModel = require('./model/topic.js').make(Schema, mongoose);
-var commentModel = require('./model/comment.js').make(Schema, mongoose);
-// end db stuff
-
-// begin require in api
-var states = require('./api/states.js');
-var sports = require('./api/sports.js');
-var teams = require('./api/teams.js');
-var topics = require('./api/topics.js');
-var comments = require('./api/comments.js');
-// end require in api
 
 // begin socket.io config
 var io = require('socket.io').listen(server);
@@ -178,6 +171,14 @@ io.sockets.on('connection', function(socket) {
   });
 });
 // end socket.io config
+
+// begin require in api
+var states = require('./api/states.js');
+var sports = require('./api/sports.js');
+var teams = require('./api/teams.js');
+var topics = require('./api/topics.js');
+var comments = require('./api/comments.js');
+// end require in api
 
 // begin make api
 var statesApi = states.make(app, stateModel, io);
