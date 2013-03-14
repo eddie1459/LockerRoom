@@ -13,7 +13,8 @@
     "socket.io": "*",
     "passport": "*",
     "passport-facebook": "*",
-    "passport-google": "*"
+    "passport-google": "*",
+    "session-mongoose": "*"
   },
   "subdomain": "lockerroom",
   "engines": {

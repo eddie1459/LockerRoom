@@ -5,23 +5,31 @@ var express = require('express'),
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google').Strategy,
     http = require('http'),
+    SessionStore = require("session-mongoose")(express),
+    store = new SessionStore({
+        url: "mongodb://localhost/session",
+        interval: 120000 // expiration check worker run interval in millisec (default: 60000)
+    })
     mongoose = require('mongoose');
 
+
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  console.log("Serialized User" + user);
+  done(null, user.name);
 });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function(name, done) {
+  console.log("De-serialized User" + name);
+  done(null, {name: name});
 });
 
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://lockerroom.jit.su/auth/google/return',
-    realm: 'http://lockerroom.jit.su/'
+    //returnURL: 'http://lockerroom.jit.su/auth/google/return',
+    //realm: 'http://lockerroom.jit.su/'
     //testing
-    //returnURL: 'http://localhost:3000/auth/google/return',
-    //realm: 'http://localhost:3000/'
+    returnURL: 'http://localhost:3000/auth/google/return',
+    realm: 'http://localhost:3000/'
   },
   function(identifier, profile, done) {
     console.log(profile.dislpayName);
@@ -71,6 +79,13 @@ app.configure(function () {
     app.use(express.static(__dirname + '/')),
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use(express.session({ 
+        store: store
+      , secret: 'welovesports'
+      , cookie : {
+            maxAge : 604800 // one week
+        }
+  }));
     app.use(app.router);
 });
 
