@@ -7,8 +7,9 @@
         'Views/Header',
         'Views/Home',
         'Views/Footer',
+        'Views/Panel',
         'ViewModel/HomeViewModel'
-    ], function ($, jqm, _, backbone, marionette, headerView, homeView, footerView, homeVm) {
+    ], function ($, jqm, _, backbone, marionette, headerView, homeView, footerView, panelView, homeVm) {
         var appRouter = marionette.AppRouter.extend({
             routes: {
                 "": "defaultAction"
@@ -24,6 +25,9 @@
 
                 LockerRoom.footerLayout = new footerView();
                 LockerRoom.footer.show(LockerRoom.footerLayout);
+
+                LockerRoom.panelLayout = new panelView();
+                LockerRoom.panel.show(LockerRoom.panelLayout);
             }
         });
 
@@ -42,7 +46,8 @@
             LockerRoom.addRegions({
                 header: "#header",
                 main: "#main",
-                footer: "#footer"
+                footer: "#footer",
+                panel: "#navigation-panel"
             });
 
             backbone.history.start();
