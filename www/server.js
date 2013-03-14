@@ -24,12 +24,12 @@ passport.use(new GoogleStrategy({
     //realm: 'http://localhost:3000/'
   },
   function(identifier, profile, done) {
-    console.log(profile.name.givenName);
-    userModel.findOne({ name: profile.name.givenName }, function (err, userFound) {
+    console.log(profile.dislpayName);
+    userModel.findOne({ openId: identifier }, function (err, userFound) {
       if (err) { console.log(err) };
       console.log(userFound);
       if (!userFound) {
-        var user = new userModel({ name: profile.name.givenName, openId: identifier} );
+        var user = new userModel({ name: profile.displayName, openId: identifier} );
         user.save(function(err) {
           console.log("User Saved!")
         });
