@@ -49,24 +49,24 @@ passport.use(new GoogleStrategy({
 ));
 
 //this doesn't work locally
-//passport.use(new FacebookStrategy({
-//    clientID: 449861405085618,
-//    clientSecret: '9429d223349512284f0a15d52186447d',
-//    callbackURL: "http://lockerroom.jit.su/auth/facebook/callback"
-    //callbackURL: "http://localhost:3000/auth/facebook/callback"
-//  },
-//  function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
-//    process.nextTick(function () {
+passport.use(new FacebookStrategy({
+   clientID: 449861405085618,
+   clientSecret: '9429d223349512284f0a15d52186447d',
+   callbackURL: "http://lockerroom.jit.su/auth/facebook/callback"
+   //callbackURL: "http://localhost:3000/auth/facebook/callback"
+ },
+ function(accessToken, refreshToken, profile, done) {
+   //asynchronous verification, for effect...
+   process.nextTick(function () {
       
       // To keep the example simple, the user's Facebook profile is returned to
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Facebook account with a user record in your database,
       // and return that user instead.
-//      return done(null, profile);
-//    });
-//  }
-//));
+     return done(null, profile);
+   });
+ }
+));
 
 var app = express();
 
@@ -132,12 +132,12 @@ app.get('/auth/google/return',
   function(req, res) {
     // Successful authentication, redirect home.
     console.log(res);
-    res.redirect('/');
+    res.redirect('/home.html');
   });
 
 app.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/');
+  res.redirect('/login.html');
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
