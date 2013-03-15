@@ -5,9 +5,10 @@
 		</div> -->
 		<ul id="thelist" data-role="listview">
 			<% for (var i=0;i < Teams.length; i++) { %>
-				<li data-teamid="<%= Teams.at(i).get('_id') %>">
-					<a href="javascript:void(0)" data-teamid="<%= Teams.at(i).get('_id') %>"><%= Teams.at(i).get("name") %>
-					</a>
+				<li data-teamid="<%= Teams.at(i).get('_id') %>" data-icon="delete">
+					<!-- <a href="javascript:void(0)" data-teamid="<%= Teams.at(i).get('_id') %>"><%= Teams.at(i).get("name") %>
+					</a> -->
+					<a href="javascript:void(0)" data-teamid="<%= Teams.at(i).get('_id') %>"><%= Teams.at(i).get("name") %></a>
 				</li>
 			<% }; %>
 		</ul>
