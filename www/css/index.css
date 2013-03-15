@@ -43,6 +43,7 @@
     width:16px;
     height:16px;
     padding-top: 10px;
+    display: inline;
 }
 .noti_bubble {
     position:relative;
@@ -102,7 +103,7 @@
   font-size:14px;
   color:#888;
 }
-#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+/*#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
   display:block; float:left;
   width:40px; height:40px;
   background:url(pull-icon@2x.png) 0 0 no-repeat;
@@ -139,4 +140,4 @@
 @-webkit-keyframes loading {
   from { -webkit-transform:rotate(0deg) translateZ(0); }
   to { -webkit-transform:rotate(360deg) translateZ(0); }
-}
+}*/

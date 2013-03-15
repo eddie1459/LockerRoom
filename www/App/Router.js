@@ -4,12 +4,11 @@
         'underscore',
         'backbone',
         'marionette',
-        'Views/Header',
         'Views/Home',
-        'Views/Footer',
         'Views/Panel',
+        'Views/Header',
         'ViewModel/HomeViewModel'
-    ], function ($, jqm, _, backbone, marionette, headerView, homeView, footerView, panelView, homeVm) {
+    ], function ($, jqm, _, backbone, marionette, homeView, panelView, headerView, homeVm) {
         var appRouter = marionette.AppRouter.extend({
             routes: {
                 "": "defaultAction"
@@ -18,13 +17,12 @@
                 LockerRoom.headerLayout = new headerView();
                 LockerRoom.header.show(LockerRoom.headerLayout);
 
+                //for some reason sometimes this loading with a callback 
+                //causes the header's css to not render.
                 homeVm.getModel(function(m) {
                     LockerRoom.layout = new homeView({ model: m });
                     LockerRoom.main.show(LockerRoom.layout);
                 });
-
-                LockerRoom.footerLayout = new footerView();
-                LockerRoom.footer.show(LockerRoom.footerLayout);
 
                 LockerRoom.panelLayout = new panelView();
                 LockerRoom.panel.show(LockerRoom.panelLayout);
@@ -46,7 +44,6 @@
             LockerRoom.addRegions({
                 header: "#header",
                 main: "#main",
-                footer: "#footer",
                 panel: "#navigation-panel"
             });
 

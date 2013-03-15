@@ -58,11 +58,14 @@ define([
                     $this.selectedSportId = sportId;
                 });
             },
+            onShow: function() {
+                //this.homeClicked();
+            },
             events: {
                 "click #goBackButton": "goBack",
                 "click #goForwardButton": "goForward"
             },
-            homeClicked: function(e) {
+            homeClicked: function() {
                 homeVm.getModel(function(m) {
                     var v = new homeView({ model: m });
                     LockerRoom.main.show(v);
