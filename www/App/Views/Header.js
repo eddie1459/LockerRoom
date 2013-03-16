@@ -13,7 +13,7 @@ define([
         'ViewModel/CommentsViewModel',
         'Lib/Require/Plugins/text!Templates/Header.html'
     ], function ($, _, backbone, marionette, homeView, teamView, topicView, commentView, homeVm, teamVm, topicVm, commentVm, templ) {
-        var view = marionette.Layout.extend({            
+        var view = marionette.ItemView.extend({            
             template: templ,
             currentKey: "home",
             currentIndex: 0,

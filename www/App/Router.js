@@ -19,10 +19,10 @@
 
                 //for some reason sometimes this loading with a callback 
                 //causes the header's css to not render.
-                homeVm.getModel(function(m) {
-                    LockerRoom.layout = new homeView({ model: m });
-                    LockerRoom.main.show(LockerRoom.layout);
-                });
+                // homeVm.getModel(function(m) {
+                //     LockerRoom.layout = new homeView({ model: m });
+                //     LockerRoom.main.show(LockerRoom.layout);
+                // });
 
                 LockerRoom.panelLayout = new panelView();
                 LockerRoom.panel.show(LockerRoom.panelLayout);
@@ -36,7 +36,7 @@
             LockerRoom = new marionette.Application();
 
             //put in http://localhost:3000 here to test in phonegap
-            LockerRoom.defaultUrl = "";
+            LockerRoom.defaultUrl = "http://localhost:3000";
 
             // kicking this off here to support anything that needs it early on
             LockerRoom.localvent = new marionette.EventAggregator();
