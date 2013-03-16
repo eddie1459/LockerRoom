@@ -5,6 +5,7 @@ var express = require('express'),
     api = require('./api/init');
     util = require('util'),
     http = require('http'),
+    passport = require('passport'),
     SessionStore = require("session-mongoose")(express),
     store = new SessionStore({
         url: "mongodb://localhost/session",
@@ -97,7 +98,7 @@ io.sockets.on('connection', function(socket) {
 
 model.initialize(app);
 api.initialize(app, model, io);
-auth.initialize(app);
+auth.initialize(app, passport, model);
 
 // export NODE_ENV=development
 // console.log(process.env.NODE_ENV);

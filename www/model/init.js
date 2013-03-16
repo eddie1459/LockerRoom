@@ -5,12 +5,12 @@ function initialize(app) {
 	var db = mongoose.connect(app.get('mongodbconn'));
 	var schema = mongoose.Schema;
 
-	this.state = require('./model/state').make(schema, mongoose);
-	this.sport = require('./model/sport').make(schema, mongoose);
-	this.team = require('./model/team').make(schema, mongoose);
-	this.topic = require('./model/topic').make(schema, mongoose);
-	this.comment = require('./model/comment').make(schema, mongoose);
-	this.user = require('./model/user').make(schema, mongoose);
+	this.state = require('./state').make(schema, mongoose);
+	this.sport = require('./sport').make(schema, mongoose);
+	this.team = require('./team').make(schema, mongoose);
+	this.topic = require('./topic').make(schema, mongoose);
+	this.comment = require('./comment').make(schema, mongoose);
+	this.user = require('./user').make(schema, mongoose);
 }
 
 module.exports.initialize = initialize;

@@ -1,4 +1,4 @@
-function initialize(passport, app) {
+function initialize(passport, app, model) {
 	var strategy = require('passport-google');
 
 	passport.use(new strategy.Strategy({
@@ -10,11 +10,11 @@ function initialize(passport, app) {
 	  },
 	  function(identifier, profile, done) {
 	    console.log(profile.dislpayName);
-	    userModel.findOne({ openId: identifier }, function (err, userFound) {
+	    model.user.findOne({ openId: identifier }, function (err, userFound) {
 	      if (err) { console.log(err) };
 	      console.log(userFound);
 	      if (!userFound) {
-	        var user = new userModel({ name: profile.displayName, openId: identifier} );
+	        var user = new model.user({ name: profile.displayName, openId: identifier} );
 	        user.save(function(err) {
 	          console.log("User Saved!")
 	        });

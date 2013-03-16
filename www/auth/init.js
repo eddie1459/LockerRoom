@@ -1,8 +1,7 @@
-function initialize(app) {
-	var passport = require('passport'),
-	    googleAuth = require('./auth/google'),
-	    facebookAuth = require('./auth/facebook'),
-	    twitterAuth = require('./auth/twitter');
+function initialize(app, passport, model) {
+	var googleAuth = require('./google'),
+	    facebookAuth = require('./facebook'),
+	    twitterAuth = require('./twitter');
 
 	passport.serializeUser(function(user, done) {
 	  console.log("Serialized User" + user);
@@ -14,7 +13,7 @@ function initialize(app) {
 	  done(null, {name: name});
 	});
 
-	googleAuth.initialize(passport, app);
+	googleAuth.initialize(passport, app, model);
 	facebookAuth.initialize(passport, app);
 	// twitterAuth.initialize(passport, app);
 }
