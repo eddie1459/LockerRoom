@@ -17,12 +17,10 @@
                 LockerRoom.headerLayout = new headerView();
                 LockerRoom.header.show(LockerRoom.headerLayout);
 
-                //for some reason sometimes this loading with a callback 
-                //causes the header's css to not render.
-                // homeVm.getModel(function(m) {
-                //     LockerRoom.layout = new homeView({ model: m });
-                //     LockerRoom.main.show(LockerRoom.layout);
-                // });
+                homeVm.getModel(function(m) {
+                    LockerRoom.layout = new homeView({ model: m });
+                    LockerRoom.main.show(LockerRoom.layout);
+                });
 
                 LockerRoom.panelLayout = new panelView();
                 LockerRoom.panel.show(LockerRoom.panelLayout);

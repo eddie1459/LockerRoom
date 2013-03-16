@@ -18,6 +18,7 @@ define([
             initialize: function () {
             },
             onShow: function() {
+                $('#wrapper').trigger('create');
             },
             goHome: function() {
                 homeVm.getModel(function(m) {

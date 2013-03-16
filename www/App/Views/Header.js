@@ -59,7 +59,10 @@ define([
                 });
             },
             onShow: function() {
-                //this.homeClicked();
+                //for some reason I have do this
+                //the data tags in html do not always style em
+                $("#goBackButton").button();
+                $("#goForwardButton").button();
             },
             events: {
                 "click #goBackButton": "goBack",
