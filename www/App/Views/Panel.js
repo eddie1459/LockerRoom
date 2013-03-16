@@ -18,7 +18,8 @@ define([
             initialize: function () {
             },
             onShow: function() {
-                $('#wrapper').trigger('create');
+                //$('#wrapper').trigger('create');
+                $("#panelList").listview("refresh");
             },
             goHome: function() {
                 homeVm.getModel(function(m) {
