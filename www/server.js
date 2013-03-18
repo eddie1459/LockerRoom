@@ -67,7 +67,9 @@ app.use(express.errorHandler());
 
 // TODO:  Routes are cooler because we can feed em configuration options!
 app.get("/", function (req, res) {
-    res.render('index', { user: req.user });
+    res.render('index', { 
+      user: req.user
+    });
     //res.redirect("index.html");
 });
 

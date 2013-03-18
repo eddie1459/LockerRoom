@@ -4,8 +4,8 @@ function initialize(app, passport, model) {
 	    twitterAuth = require('./twitter');
 
 	passport.serializeUser(function(user, done) {
-	  console.log("Serialized User" + user);
-	  done(null, user.name);
+	  console.log("Serialized User: " + user);
+	  done(null, user);
 	});
 
 	// function findById(id, fn) {
@@ -17,14 +17,17 @@ function initialize(app, passport, model) {
 	//   }
 	// }
 
-	passport.deserializeUser(function(name, done) {
+	passport.deserializeUser(function(id, done) {
+	  model.user.findOne(id, function (err, user) {
+	  	console.log("De-serialized User" + user);
+	    done(err, user);
+	  });
+	  
+	});
 		// findById(id, function (err, user) {
 	 	//    	done(err, user);
 	 	//  	});
-	  console.log("De-serialized User" + name);
-	  done(null, {name: name});
-	});
-
+	  
 	googleAuth.initialize(passport, app, model);
 	facebookAuth.initialize(passport, app);
 	// twitterAuth.initialize(passport, app);

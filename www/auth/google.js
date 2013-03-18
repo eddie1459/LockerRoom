@@ -9,7 +9,7 @@ function initialize(passport, app, model) {
 	    realm: 'http://localhost:3000/'
 	  },
 	  function(identifier, profile, done) {
-	    console.log(profile.dislpayName);
+	    console.log(profile);
 	    model.user.findOne({ openId: identifier }, function (err, userFound) {
 	      if (err) { console.log(err) };
 	      console.log(userFound);
@@ -20,7 +20,6 @@ function initialize(passport, app, model) {
 	        });
 	      };
 	    });
-	    
 	    return done(null, profile);
 	  }
 	));
