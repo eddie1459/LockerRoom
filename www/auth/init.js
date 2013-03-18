@@ -8,7 +8,19 @@ function initialize(app, passport, model) {
 	  done(null, user.name);
 	});
 
+	// function findById(id, fn) {
+	//   var idx = id - 1;
+	//   if (users[idx]) {
+	//     fn(null, users[idx]);
+	//   } else {
+	//     fn(new Error('User ' + id + ' does not exist'));
+	//   }
+	// }
+
 	passport.deserializeUser(function(name, done) {
+		// findById(id, function (err, user) {
+	 	//    	done(err, user);
+	 	//  	});
 	  console.log("De-serialized User" + name);
 	  done(null, {name: name});
 	});

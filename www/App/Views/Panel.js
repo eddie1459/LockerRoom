@@ -19,7 +19,7 @@ define([
             },
             onShow: function() {
                 //$('#wrapper').trigger('create');
-                $("#panelList").listview("refresh");
+                //$("#panelList").listview("refresh");
             },
             goHome: function() {
                 homeVm.getModel(function(m) {

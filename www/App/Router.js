@@ -4,11 +4,13 @@
         'underscore',
         'backbone',
         'marionette',
-        'Views/Home',
+        //'Views/Home',
+        'Model/user',
+        'Views/AccountInfo',
         'Views/Panel',
         'Views/Header',
         'ViewModel/HomeViewModel'
-    ], function ($, jqm, _, backbone, marionette, homeView, panelView, headerView, homeVm) {
+    ], function ($, jqm, _, backbone, marionette, userModel, accountView, panelView, headerView, homeVm) {
         var appRouter = marionette.AppRouter.extend({
             routes: {
                 "": "defaultAction"
@@ -17,10 +19,18 @@
                 LockerRoom.headerLayout = new headerView();
                 LockerRoom.header.show(LockerRoom.headerLayout);
 
-                homeVm.getModel(function(m) {
-                    LockerRoom.layout = new homeView({ model: m });
-                    LockerRoom.main.show(LockerRoom.layout);
+                //TODO: get user model from server
+                var m = new userModel({ 
+                    Greeting: "Welcome " + "user@email.com" + " Lets's take some time to setup your account." 
                 });
+
+                LockerRoom.layout = new accountView({ model: m});
+                LockerRoom.main.show(LockerRoom.layout);
+                
+                // homeVm.getModel(function(m) {
+                //     LockerRoom.layout = new homeView({ model: m });
+                //     LockerRoom.main.show(LockerRoom.layout);
+                // });
 
                 LockerRoom.panelLayout = new panelView();
                 LockerRoom.panel.show(LockerRoom.panelLayout);
