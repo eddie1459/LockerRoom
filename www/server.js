@@ -49,6 +49,7 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
+  winston.info("User Id: " + req.user);
   res.render('account', { user: req.user });
 });
 
