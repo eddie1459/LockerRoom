@@ -43,35 +43,38 @@ app.configure('production', function(){
   app.set('socketaddress', 'http://lockerroom.jit.su');
 });
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/login.html');
-});
-
-app.get('/account', function(req, res){
-  winston.info("User Id: " + req.user);
-  res.render('account', { user: req.user });
-});
-
-// Simple route middleware to ensure user is authenticated.
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed.  Otherwise, the user will be redirected to the
-//   login page.
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  
+  res.redirect('/login.html')
 }
+
+// app.get('/logout', function(req, res){
+//   req.logout();
+//   res.redirect('/login.html');
+// });
+
+// app.get('/account', function(req, res){
+//   winston.info("User Id: " + req.user);
+//   res.render('account', { user: req.user });
+// });
 
 app.use(express.errorHandler());
 
-// TODO:  Routes are cooler because we can feed em configuration options!
-app.get("/", function (req, res) {
+// NOTE:  If you hit this get again after logging in
+//        you can see winston has logged the req.user!
+// TODO:  Can we use jade templates here to display user info
+//        on the home page?
+app.get("/", ensureAuthenticated, function(req, res) {
     winston.info("User Id: " + req.user);
-    res.render('index', { 
+    res.redirect('/home', { 
       user: req.user
     });
-    //res.redirect("index.html");
+});
+
+app.get("/home", ensureAuthenticated, function(req, res) {
+    winston.info("User Id: " + req.user);
+    res.redirect('/home.html');
 });
 
 var server = http.createServer(app);
