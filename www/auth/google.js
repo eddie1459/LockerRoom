@@ -12,15 +12,17 @@ function initialize(passport, app, model) {
 	    console.log(profile);
 	    model.user.findOne({ openId: identifier }, function (err, userFound) {
 	      if (err) { console.log(err) };
-	      console.log(userFound);
+	      console.log("User was found: " + userFound);
 	      if (!userFound) {
 	        var user = new model.user({ name: profile.displayName, openId: identifier} );
 	        user.save(function(err) {
 	          console.log("User Saved!")
 	        });
-	      };
+	      } else {
+	      	console.log("User being processed!");
+	      	done(null, userFound);
+	      }
 	    });
-	    return done(null, profile);
 	  }
 	));
 

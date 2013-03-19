@@ -1,19 +1,2 @@
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:35:18.801Z"}
-{"level":"info","message":"Serialized User: undefined","timestamp":"2013-03-19T01:36:01.805Z"}
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:37:25.286Z"}
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:38:24.366Z"}
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:39:18.596Z"}
-{"level":"info","message":"Serialized User: [object Object]","timestamp":"2013-03-19T01:40:04.038Z"}
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:40:43.110Z"}
-{"level":"info","message":"Serialized User: [object Object]","timestamp":"2013-03-19T01:40:54.079Z"}
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:42:43.507Z"}
-{"level":"info","message":"Serialized User: [object Object]","timestamp":"2013-03-19T01:42:56.321Z"}
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:43:36.880Z"}
-{"level":"info","message":"Serialized User: [object Object]","timestamp":"2013-03-19T01:43:47.171Z"}
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:45:28.725Z"}
-{"level":"info","message":"Serialized User: undefined","timestamp":"2013-03-19T01:45:38.692Z"}
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:50:27.945Z"}
-{"level":"info","message":"Serializing user: undefined","timestamp":"2013-03-19T01:50:42.913Z"}
-{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T01:54:14.511Z"}
-{"level":"info","message":"Serializing user: undefined","timestamp":"2013-03-19T01:54:29.957Z"}
-{"level":"info","message":"Serializing user: undefined","timestamp":"2013-03-19T01:56:03.840Z"}
+{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T02:15:04.819Z"}
+{"level":"info","message":"Serializing user: 5147b76f9d8ef10902000001","timestamp":"2013-03-19T02:15:16.447Z"}

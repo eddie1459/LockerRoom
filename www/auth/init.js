@@ -3,29 +3,16 @@ function initialize(app, passport, model, logger) {
 	    facebookAuth = require('./facebook'),
 	    twitterAuth = require('./twitter');
 
-	// passport.serializeUser(function(user, done) {
-	// 	logger.info("Serializing user: " + user._id);
-	//   	done(null, user._id);
-	// });
-
-	// passport.deserializeUser(function(id, done) {
-	// 	logger.info("Deserializing user: " + id);
-	//   accounts.findOne(id, function (err, user) {
-	//     done(err, user);
-	//   });
-	// });
-
 	passport.serializeUser(function(user, done) {
-	  	logger.info("Serializing user: " + user._id);
+		logger.info("Serializing user: " + user._id);
 	  	done(null, user._id);
 	});
 
 	passport.deserializeUser(function(id, done) {
-		var o_id = new BSON.ObjectID(id);
-		logger.info("Deserializing user: " + o_id);
-		accounts.findOne({_id:o_id}, function (err, user) {
-			done(err, user);
-		});
+		logger.info("Deserializing user: " + id);
+	    model.user.findOne(id, function (err, user) {
+	    	done(err, user);
+	  	});
 	});
 
 	// passport.serializeUser(function(user, done) {
