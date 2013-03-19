@@ -14,7 +14,8 @@
     "passport": "*",
     "passport-facebook": "*",
     "passport-google": "*",
-    "session-mongoose": "*"
+    "session-mongoose": "*",
+    "winston": "*"
   },
   "subdomain": "lockerroom",
   "engines": {
