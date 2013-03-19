@@ -7,3 +7,7 @@
 {"level":"info","message":"Serializing user: 5147b76f9d8ef10902000001","timestamp":"2013-03-19T02:45:31.456Z"}
 {"level":"info","message":"Deserializing user: 5147b76f9d8ef10902000001","timestamp":"2013-03-19T02:45:52.051Z"}
 {"level":"info","message":"User Id: { name: 'Corey Perkins',\n  _id: 5147b76f9d8ef10902000001,\n  __v: 0,\n  timestamp: Mon Mar 18 2013 19:55:11 GMT-0500 (CDT),\n  teams: [],\n  openId: [ 'https://www.google.com/accounts/o8/id?id=AItOawkCn74zr2u506lclXPTXfsFEZI2t4nhzK4' ] }","timestamp":"2013-03-19T02:45:52.054Z"}
+{"level":"info","message":"Winston Initialized!!!","timestamp":"2013-03-19T02:47:41.431Z"}
+{"level":"info","message":"Serializing user: 5147b76f9d8ef10902000001","timestamp":"2013-03-19T02:47:55.068Z"}
+{"level":"info","message":"Deserializing user: 5147b76f9d8ef10902000001","timestamp":"2013-03-19T02:48:12.107Z"}
+{"level":"info","message":"User Id: { name: 'Corey Perkins',\n  _id: 5147b76f9d8ef10902000001,\n  __v: 0,\n  timestamp: Mon Mar 18 2013 19:55:11 GMT-0500 (CDT),\n  teams: [],\n  openId: [ 'https://www.google.com/accounts/o8/id?id=AItOawkCn74zr2u506lclXPTXfsFEZI2t4nhzK4' ] }","timestamp":"2013-03-19T02:48:12.110Z"}
