@@ -12,24 +12,23 @@ var express = require('express'),
         interval: 120000 // expiration check worker run interval in millisec (default: 60000)
     });
 
+var winston = require('winston');
+winston.add(winston.transports.File, { filename: 'winston-log.log' });
+winston.remove(winston.transports.Console);
+winston.info('Winston Initialized!!!');
+
 var app = express();
 
 app.configure(function () {
     app.set('port', process.env.PORT || 3000);
     app.use(express.logger('dev'));
-    app.use(express.cookieParser());
-    app.use(express.bodyParser()),
+    app.use(express.cookieParser('welovesports'));
+    app.use(express.session());
+    app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use(express.static(__dirname + '/')),
+    app.use(express.static(__dirname + '/'));
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(express.session({ 
-        store: store
-      , secret: 'welovesports'
-      , cookie : {
-            maxAge : 604800 // one week
-        }
-  }));
     app.use(app.router);
 });
 
@@ -67,6 +66,7 @@ app.use(express.errorHandler());
 
 // TODO:  Routes are cooler because we can feed em configuration options!
 app.get("/", function (req, res) {
+    winston.info("User Id: " + req.user);
     res.render('index', { 
       user: req.user
     });
@@ -75,24 +75,24 @@ app.get("/", function (req, res) {
 
 var server = http.createServer(app);
 server.listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+  winston.info("Express server listening on port " + app.get('port'));
 });
 
 // begin socket.io config
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
-  console.log('Socket Connection Made - Server Side');
+  // console.log('Socket Connection Made - Server Side');
   socket.on("leaveRoom", function(data){
-      console.log('Leaving room ' + data.room);
+      // console.log('Leaving room ' + data.room);
       socket.leave(data.room);
   });
   socket.on("setRoom", function(data){
-      console.log('Joining room ' + data.room);
+      // console.log('Joining room ' + data.room);
       socket.join(data.room);
   });
 
   socket.on('comment', function(data) {
-    console.log('Emitting comment');
+    // console.log('Emitting comment');
     socket.broadcast.to(data.room).emit('comment', data.comment);
   });
 });
@@ -100,7 +100,7 @@ io.sockets.on('connection', function(socket) {
 
 model.initialize(app);
 api.initialize(app, model, io);
-auth.initialize(app, passport, model);
+auth.initialize(app, passport, model, winston);
 
 // export NODE_ENV=development
 // console.log(process.env.NODE_ENV);
