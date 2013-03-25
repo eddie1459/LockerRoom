@@ -3,6 +3,7 @@ function make(app, model, io) {
 	  var stateid = req.query["stateid"];
       var sportid = req.query["sportid"];
 
+      console.log("User Id: ", req.user);
       console.log("Request url: " + req.url);
       console.log("stateid: " + stateid);
       console.log("sportid: " + sportid);
