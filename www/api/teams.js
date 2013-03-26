@@ -1,9 +1,10 @@
-function make(app, model, io) {
+function make(app, model, io, logger) {
 	app.get('/api/team', function(req, res) {
 	  var stateid = req.query["stateid"];
       var sportid = req.query["sportid"];
 
-      console.log("User Id: ", req.user);
+      logger.info("User Id (teams api): ", req.user);
+      console.log("User Id (teams api): ", req.user);
       console.log("Request url: " + req.url);
       console.log("stateid: " + stateid);
       console.log("sportid: " + sportid);

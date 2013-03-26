@@ -103,7 +103,7 @@ io.sockets.on('connection', function(socket) {
 // end socket.io config
 
 model.initialize(app);
-api.initialize(app, model, io);
+api.initialize(app, model, io, winston);
 auth.initialize(app, passport, model, winston);
 
 // export NODE_ENV=development

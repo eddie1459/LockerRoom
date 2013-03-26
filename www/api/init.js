@@ -1,13 +1,13 @@
 var states, sports, teams, topics, comments;
 
-function initialize(app, model, io) {
+function initialize(app, model, io, logger) {
 	//var mongoose = require('mongoose');
 	//var db = mongoose.connect(app.get('mongodbconn'));
 	//var schema = mongoose.Schema;
 
 	this.states = require('./states').make(app, model.state, io);
 	this.sports = require('./sports').make(app, model.sport, io);
-	this.teams = require('./teams').make(app, model.team, io);
+	this.teams = require('./teams').make(app, model.team, io, logger);
 	this.topics = require('./topics').make(app, model.topic, io);
 	this.comments = require('./comments').make(app, model.comment, io);
 }
