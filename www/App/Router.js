@@ -30,6 +30,8 @@
                 // strategy I'm using here. Otherwise, the record will always have been created and we'll have to just inspect it to know where to
                 // send the user...that could be okay...
 
+                // If we go this second route we only need to inspect Name/NickName/AgreedToTerms...because the login will always guarantee the user.
+
                 home.getUser(function(m) {
                     if (m) {
                         // TODO:  if the user (is in the db) has filled out First/Last Name, Nickname, and agreed to terms the navigate to the wall
