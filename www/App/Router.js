@@ -19,38 +19,30 @@
                 LockerRoom.headerLayout = new headerView();
                 LockerRoom.header.show(LockerRoom.headerLayout);
 
-                //TODO: Attempt to retrieve the user information from the server. 
-                //      The server will hold the user id if the user is logged in. 
-                //      1. Ask the server if the user is logged in.
-                //         a. If yes (and they've visited us before), we should receive back the userModel, the nav to their wall
-                //         b. If yes (and they've not visited us before), navigate to the accountView (fill out), then to setup
-                //         c. If no, navigate to the login page (for google, facebook, etc)...how'd they get here? lol
+                // Assume to get this far we are logged in on a provider and we have a user record in our database
+                // Assume the user record in our database includes id, name, and openId
 
-                // Currently, we are saving the user record via Passport's strategy (see Google.js). We may want to rethink this...to allow for the
-                // strategy I'm using here. Otherwise, the record will always have been created and we'll have to just inspect it to know where to
-                // send the user...that could be okay...
-
-                // If we go this second route we only need to inspect Name/NickName/AgreedToTerms...because the login will always guarantee the user.
-
+                // TODO:  Inspect the user record for basic info (Name, NickName, and AgreedToTerms)
                 home.getUser(function(m) {
-                    if (m) {
-                        // TODO:  if the user (is in the db) has filled out First/Last Name, Nickname, and agreed to terms the navigate to the wall
-                    } else {
-                        // TODO:  if the user (is in the db) has not filled out the basic info navigate to "accountView" then navigate to their setup
+                    if (m.HasBasicInfo && m.Teams.length > 0) {
+                        // TODO:  if the user has filled out their basic info and has at least one team then navigate to the wall
+                        // homeVm.getModel(function(m) {
+                        //     LockerRoom.layout = new homeView({ model: m });
+                        //     LockerRoom.main.show(LockerRoom.layout);
+                        // });
+                    } else if (m.HasBasicInfo && m.Teams.length == 0) {
+                        // TODO:  if the user has filled out their basic info but has no teams navigate to the setup, then to the wall
+
+                    } else if (!m.HasBasicInfo) {
+                        // TODO:  if the user has not filled out the basic info navigate to "accountView" then navigate to setup/wall
+                        // var m = new userModel({ 
+                        //     Greeting: "Welcome " + "user@email.com" + " Lets's take some time to setup your account." 
+                        // });
+
+                        // LockerRoom.layout = new accountView({ model: m});
+                        // LockerRoom.main.show(LockerRoom.layout);
                     }
                 });
-
-                // var m = new userModel({ 
-                //     Greeting: "Welcome " + "user@email.com" + " Lets's take some time to setup your account." 
-                // });
-
-                // LockerRoom.layout = new accountView({ model: m});
-                // LockerRoom.main.show(LockerRoom.layout);
-                
-                // homeVm.getModel(function(m) {
-                //     LockerRoom.layout = new homeView({ model: m });
-                //     LockerRoom.main.show(LockerRoom.layout);
-                // });
 
                 LockerRoom.panelLayout = new panelView();
                 LockerRoom.panel.show(LockerRoom.panelLayout);
