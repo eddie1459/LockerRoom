@@ -1,4 +1,4 @@
-var states, sports, teams, topics, comments;
+var states, sports, teams, topics, comments, users;
 
 function initialize(app, model, io, logger) {
 	//var mongoose = require('mongoose');
@@ -10,6 +10,7 @@ function initialize(app, model, io, logger) {
 	this.teams = require('./teams').make(app, model.team, io, logger);
 	this.topics = require('./topics').make(app, model.topic, io);
 	this.comments = require('./comments').make(app, model.comment, io);
+	this.users = require('./users').make(app, model.user, io);
 }
 
 module.exports.initialize = initialize;
@@ -18,3 +19,4 @@ module.exports.sports = sports;
 module.exports.teams = teams;
 module.exports.topics = topics;
 module.exports.comments = comments;
+module.exports.users = users;
