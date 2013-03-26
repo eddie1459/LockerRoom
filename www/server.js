@@ -66,16 +66,14 @@ app.use(express.errorHandler());
 // TODO:  Can we use jade templates here to display user info
 //        on the home page?
 app.get("/", ensureAuthenticated, function(req, res) {
-    winston.info("User Id: " + req.user);
-    res.redirect('/home', { 
-      user: req.user
-    });
-});
-
-app.get("/home", ensureAuthenticated, function(req, res) {
-    winston.info("User Id: " + req.user);
+    //winston.info("User Id: " + req.user);
     res.redirect('/home.html');
 });
+
+// app.get("/home", ensureAuthenticated, function(req, res) {
+//     //winston.info("User Id: " + req.user);
+//     res.redirect('/home.html');
+// });
 
 var server = http.createServer(app);
 server.listen(app.get('port'), function(){
