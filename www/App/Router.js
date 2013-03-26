@@ -19,13 +19,12 @@
                 LockerRoom.headerLayout = new headerView();
                 LockerRoom.header.show(LockerRoom.headerLayout);
 
-                //TODO: Attempt to retrieve the user information
-                //      from the server. The server will hold the 
-                //      user id if the user is logged in. 
+                //TODO: Attempt to retrieve the user information from the server. 
+                //      The server will hold the user id if the user is logged in. 
                 //      1. Ask the server if the user is logged in.
-                //         a. If yes (and they've visited us before), we should receive back the userModel
-                //         b. If yes (and they've not visited us before), navigate to the accountView.
-                //         c. If no, navigate to the login page (for google, facebook, etc).
+                //         a. If yes (and they've visited us before), we should receive back the userModel, the nav to their wall
+                //         b. If yes (and they've not visited us before), navigate to the accountView (fill out), then to setup
+                //         c. If no, navigate to the login page (for google, facebook, etc)...how'd they get here? lol
                 var m = new userModel({ 
                     Greeting: "Welcome " + "user@email.com" + " Lets's take some time to setup your account." 
                 });
