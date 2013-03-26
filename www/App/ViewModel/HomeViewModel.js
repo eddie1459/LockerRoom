@@ -3,8 +3,9 @@ define([
         'underscore',
         'backbone',
         'Collection/states',
-        'Collection/sports'
-    ], function ($, _, backbone, states, sports) {
+        'Collection/sports',
+        'Model/user'
+    ], function ($, _, backbone, states, sports, user) {
         return {
             getModel: function(callback) {
                 new states().fetch({ 
@@ -17,6 +18,13 @@ define([
                             }
                         });
                     }
+                });
+            },
+            getUser: function(callback) {
+                new user().fetch({
+                    success: function(m) {
+                        callback(m);
+                    };
                 });
             }
         }

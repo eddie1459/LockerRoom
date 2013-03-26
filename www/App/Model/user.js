@@ -8,7 +8,8 @@ define([
         },
         defaults: function () {
             return {
-                Greeting: ''
+                _id: '',
+                name: ''
             };
         }
     });
