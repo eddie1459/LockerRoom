@@ -8,9 +8,12 @@ define([
         },
         defaults: function () {
             return {
-                topicid: '',
+                topic: '',
+                commenter: '',
                 commentcontent: '',
-                timestamp: ''
+                timestamp: '',
+                numberOfResponses: 0,
+                numberOfEnjoyables: 0
             };
         }
     });

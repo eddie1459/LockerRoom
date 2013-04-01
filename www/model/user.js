@@ -1,7 +1,9 @@
 function make(Schema, mongoose) {
 	var userSchema = new Schema({
 	  name: { type: String, required: true },
-	  openId: { type: Array, required: true },
+	  handle: { type: String, required: true },
+	  openId: { type: String, required: true },
+	  agreed: { type: false, required: true },
 	  teams: { type: Array, required: false },
 	  timestamp: { type: Date, default: Date.now }
 	});

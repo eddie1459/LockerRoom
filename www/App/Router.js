@@ -33,6 +33,13 @@
                         //     LockerRoom.layout = new homeView({ model: m });
                         //     LockerRoom.main.show(LockerRoom.layout);
                         // });
+
+                        var wallModel = new WallModel({
+                            user: m,
+                            comments: []        // TODO:  Fetch from db using teams (last 10?)
+                        });
+                        var wallView = new WallView({ model: wallModel });
+                        LockerRoom.main.show(wallView);
                     } else if (m.HasBasicInfo && m.Teams.length == 0) {
                         // TODO:  if the user has filled out their basic info but has no teams navigate to the setup, then to the wall
 

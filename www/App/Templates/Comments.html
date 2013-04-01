@@ -3,7 +3,8 @@ Enjoy the game!
 	<% for (var i=0;i < Comments.length; i++) { %>
 		<div class="commentBorder">
 		<li data-commentid="<%= Comments.at(i).get('_id') %>">
-			<div class="msgUser">Fake User Name</div>
+			<div class="msgUser"><%= Comments.at(i).get('commenter') %></div>
+			<div class="msgUser"><%= Comments.at(i).get('topic') %></div>
 			<div class="msgTime"><%= new Date(Comments.at(i).get("timestamp")) %></div>
 			<div class="content"><%= Comments.at(i).get("commentcontent") %></div>
 		</li>

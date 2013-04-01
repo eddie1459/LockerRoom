@@ -9,7 +9,17 @@ define([
         defaults: function () {
             return {
                 _id: '',
-                name: ''
+                name: '',
+                handle: '',
+                agreed: false,
+                teams: [],
+                
+                HasBasicInfo: function() {
+                    if (this.name && this.handle && this.agreed) {
+                        return true;
+                    }
+                    return false;
+                }
             };
         }
     });
