@@ -24,7 +24,7 @@ define([
                 new user().fetch({
                     success: function(m) {
                         callback(m);
-                    };
+                    }
                 });
             }
         }

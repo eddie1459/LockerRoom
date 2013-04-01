@@ -23,7 +23,10 @@
                 // Assume the user record in our database includes id, name, and openId
 
                 // TODO:  Inspect the user record for basic info (Name, NickName, and AgreedToTerms)
-                home.getUser(function(m) {
+                //this will find a user if you click on the provider screen and pick the google provider
+                //not sure why it doesn't keep the user session, may have to call the passport.authenticate over in
+                //the users.js api call??
+                homeVm.getUser(function(m) {
                     if (m.HasBasicInfo && m.Teams.length > 0) {
                         // TODO:  if the user has filled out their basic info and has at least one team then navigate to the wall
                         // homeVm.getModel(function(m) {
