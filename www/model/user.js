@@ -3,7 +3,7 @@ function make(Schema, mongoose) {
 	  name: { type: String, required: true },
 	  handle: { type: String, required: true },
 	  openId: { type: String, required: true },
-	  agreed: { type: false, required: true },
+	  agreed: { type: Boolean, required: true },
 	  teams: { type: Array, required: false },
 	  timestamp: { type: Date, default: Date.now }
 	});
