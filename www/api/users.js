@@ -12,6 +12,20 @@ function make(app, model, io) {
 	  	}
 	  });
 	});
+
+	app.put('/api/user/:id', function(req, res) {
+		return model.findById(req.params.id, function(err, t) {
+		  t.handle = req.body.handle;
+		  return t.save(function(err) {
+		  	if (!err) {
+		  		console.log("updated");
+		  	} else {
+		  		console.log(err);
+		  	}
+		  	return res.send(t);
+		  });
+		});
+	});
 }
 
 module.exports.make = make;

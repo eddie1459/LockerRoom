@@ -45,9 +45,10 @@
 
                     } else if (!m.HasBasicInfo) {
                         // TODO:  if the user has not filled out the basic info navigate to "accountView" then navigate to setup/wall
-                        var m = new userModel({ 
-                            Greeting: "Welcome " + m.get("name") + " Lets's take some time to setup your account." 
-                        });
+                        // var m = new userModel({ 
+                        //     Greeting: "Welcome " + m.get("name") + " Lets's take some time to setup your account." 
+                        // });
+                        m.set("Greeting", "Welcome " + m.get("name") + " Lets's take some time to setup your account.");
 
                         LockerRoom.layout = new accountView({ model: m});
                         LockerRoom.main.show(LockerRoom.layout);
