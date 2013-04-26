@@ -15,9 +15,13 @@ define([
             },
             getStarted: function() {
                 //var user = new user({ handle: $("nickName").val() });
+
+                //had to hack this url since the model doesn't
+                //exist on the server?
+                this.model.url = "/api/user/" + this.model.get("_id");
                 this.model.set("handle", $("#nickName").val());
                 this.model.set("agreed", $("#checkbox-1").val())
-                this.model.set("id", this.model.get("_id"));
+                this.model.id = this.model.get("_id");
                 this.model.save({}, {
                     success: function (m, r) {
                         //direct user to add team screen
