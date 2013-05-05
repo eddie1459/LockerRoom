@@ -14,7 +14,10 @@ function initialize(passport, app, model) {
 	      if (err) { console.log(err) };
 	      console.log("User was found: " + userFound);
 	      if (!userFound) {
-	        var user = new model.user({ name: profile.displayName, openId: identifier} );
+	        var user = new model.user({ 
+	        	name: profile.displayName,
+	         	openId: identifier
+	        });
 	        user.save(function(err) {
 	          console.log("User Saved!")
 	        });

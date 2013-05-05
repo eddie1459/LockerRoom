@@ -19,7 +19,31 @@ define([
                 $('#sportsList').prop("selectedIndex", -1);
             },
             showTeams: function(e) {
-                LockerRoom.vent.trigger("showTeams");
+                var that = this;
+                teamVm.getModel(function(m) {
+                    var v = new teamView({ model: m });
+                    LockerRoom.main.show(v);
+                    var myScroll = new iScroll('wrapper');
+                    // var myScroll = new iScroll('wrapper', {
+                    //     onRefresh: function () {
+                    //         $('.pullDownLabel').innerHTML = 'Pull down to refresh...';
+                    //     },
+                    //     onScrollEnd: function () {      
+                    //         teamVm.getModel(function(m) {
+                    //             $('thelist').empty();
+                    //             var li = document.createElement('li');
+
+                    //             m.get("Teams").each(function(item){    
+                    //                 $(li).attr("data-teamid", item.get("_id"));
+                    //                 $(li).append("<a href='javascript:void(0)'>" + item.get("name") + "</a>");
+                    //                 $('thelist').append(li);
+                    //             });
+
+                    //             myScroll.refresh();
+                    //         }, that.selectedSportId, that.selectedStateId);   // Execute custom function (ajax call?)
+                    //     }
+                    // });
+                }, this.selectedSportId, this.selectedStateId);
             },
             stateChanged: function(e) {
                 var stateId = $(e.currentTarget).val();
@@ -28,8 +52,8 @@ define([
             },
             sportChanged: function(e) {
                 var sportId = $(e.currentTarget).val();
-
-                LockerRoom.vent.trigger("sportChanged", sportId);
+                //if ($("statesList")
+               // LockerRoom.vent.trigger("sportChanged", sportId);
             }
         });
 

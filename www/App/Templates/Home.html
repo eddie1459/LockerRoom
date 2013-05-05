@@ -14,3 +14,11 @@ Select Your Sport
 <%};%>
 </select>
 </div>
+<div class="pull-left span12">
+Select Your Team
+<select id="teamsList" class="input-medium">
+<% for (var i=0;i < Teams.length; i++) { %>
+	<option value="<%= Teams.at(i).get('_id') %>"><%= Teams.at(i).get("name") %></option>
+<%};%>
+</select>
+</div>

@@ -13,14 +13,16 @@ define([
                 handle: '',
                 agreed: false,
                 teams: [],
-                
-                HasBasicInfo: function() {
-                    if (this.name && this.handle && this.agreed) {
-                        return true;
-                    }
-                    return false;
-                }
+                HasBasicInfo: false
             };
+        },
+        parse: function (res) {
+            if (res.name && res.handle && res.agreed){
+                res.HasBasicInfo = true;
+            }else{
+                res.HasBasicInfo = false;
+            }
+            return res;
         }
     });
 });

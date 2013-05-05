@@ -14,26 +14,29 @@ define([
                 "click #getStarted": "getStarted"
             },
             getStarted: function() {
-                //var user = new user({ handle: $("nickName").val() });
-
                 //had to hack this url since the model doesn't
                 //exist on the server?
                 this.model.url = "/api/user/" + this.model.get("_id");
                 this.model.set("handle", $("#nickName").val());
-                this.model.set("agreed", $("#checkbox-1").val())
+                var agreed = $('#checkbox-1').attr('checked') ? 1 : 0;
+                if (agreed === 1){
+                    this.model.set("agreed", true);
+                }else{
+                    this.model.set("agreed", false);
+                }
                 this.model.id = this.model.get("_id");
                 this.model.save({}, {
                     success: function (m, r) {
-                        //direct user to add team screen
+                        homeVm.getModel(function(m) {
+                            var v = new homeView({ model: m });
+                            LockerRoom.main.show(v);
+                        });
                     },
                     error: function (m, r) {
                         alert("Could not save the user.");
                     }
                 });
-                homeVm.getModel(function(m) {
-                    var v = new homeView({ model: m });
-                    LockerRoom.main.show(v);
-                });
+                
             },
         });
 

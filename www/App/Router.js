@@ -27,7 +27,7 @@
                 //not sure why it doesn't keep the user session, may have to call the passport.authenticate over in
                 //the users.js api call??
                 homeVm.getUser(function(m) {
-                    if (m.HasBasicInfo && m.Teams.length > 0) {
+                    if (m.get("HasBasicInfo") && m.get("teams").length > 0) {
                         // TODO:  if the user has filled out their basic info and has at least one team then navigate to the wall
                         // homeVm.getModel(function(m) {
                         //     LockerRoom.layout = new homeView({ model: m });
@@ -40,10 +40,10 @@
                         });
                         var wallView = new WallView({ model: wallModel });
                         LockerRoom.main.show(wallView);
-                    } else if (m.HasBasicInfo && m.Teams.length == 0) {
+                    } else if (m.get("HasBasicInfo") && m.get("teams").length == 0) {
                         // TODO:  if the user has filled out their basic info but has no teams navigate to the setup, then to the wall
 
-                    } else if (!m.HasBasicInfo) {
+                    } else if (!m.get("HasBasicInfo")) {
                         // TODO:  if the user has not filled out the basic info navigate to "accountView" then navigate to setup/wall
                         // var m = new userModel({ 
                         //     Greeting: "Welcome " + m.get("name") + " Lets's take some time to setup your account." 

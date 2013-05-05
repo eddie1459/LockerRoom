@@ -16,6 +16,7 @@ function make(app, model, io) {
 	app.put('/api/user/:id', function(req, res) {
 		return model.findById(req.params.id, function(err, t) {
 		  t.handle = req.body.handle;
+		  t.agreed = req.body.agreed;
 		  return t.save(function(err) {
 		  	if (!err) {
 		  		console.log("updated");
