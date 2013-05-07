@@ -29,6 +29,7 @@
                 homeVm.getUser(function(m) {
                     if (m.get("HasBasicInfo") && m.get("teams").length > 0) {
                         // TODO:  if the user has filled out their basic info and has at least one team then navigate to the wall
+                        // TODO:  create the wall view and model
                         var wallModel = new WallModel({
                             user: m,
                             comments: []        // TODO:  Fetch from db using teams (last 10?)
@@ -36,7 +37,8 @@
                         var wallView = new WallView({ model: wallModel });
                         LockerRoom.main.show(wallView);
                     } else if (m.get("HasBasicInfo") && m.get("teams").length == 0) {
-                        // TODO:  just have to nagivate to wall now when user chooses their teams
+                        // TODO:  just have to nagivate to wall now when user chooses their teams, get "Done" button in on teams page
+                        // change arrows on teams to stars and add those id's to the list of teams for that user.
                         homeVm.getModel(function(m) {
                             LockerRoom.layout = new homeView({ model: m });
                             LockerRoom.main.show(LockerRoom.layout);
