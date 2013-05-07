@@ -36,16 +36,13 @@
                         var wallView = new WallView({ model: wallModel });
                         LockerRoom.main.show(wallView);
                     } else if (m.get("HasBasicInfo") && m.get("teams").length == 0) {
-                        // TODO:  if the user has filled out their basic info but has no teams navigate to the setup, then to the wall
+                        // TODO:  just have to nagivate to wall now when user chooses their teams
                         homeVm.getModel(function(m) {
                             LockerRoom.layout = new homeView({ model: m });
                             LockerRoom.main.show(LockerRoom.layout);
                         });
                     } else if (!m.get("HasBasicInfo")) {
-                        // TODO:  if the user has not filled out the basic info navigate to "accountView" then navigate to setup/wall
-                        // var m = new userModel({ 
-                        //     Greeting: "Welcome " + m.get("name") + " Lets's take some time to setup your account." 
-                        // });
+                        // TODO:  navigate to team chooser then navigate to setup/wall
                         m.set("Greeting", "Welcome " + m.get("name") + " Lets's take some time to setup your account.");
 
                         LockerRoom.layout = new accountView({ model: m});

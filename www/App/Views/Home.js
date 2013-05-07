@@ -11,8 +11,6 @@ define([
             template: templ,
             events: {
                 "click #showTeams": "showTeams"
-                // "change #statesList": "stateChanged",
-                // "change #sportsList": "sportChanged"
             },
             initialize: function () {
             },
@@ -26,38 +24,8 @@ define([
                     var v = new teamView({ model: m });
                     LockerRoom.main.show(v);
                     var myScroll = new iScroll('wrapper');
-                    // var myScroll = new iScroll('wrapper', {
-                    //     onRefresh: function () {
-                    //         $('.pullDownLabel').innerHTML = 'Pull down to refresh...';
-                    //     },
-                    //     onScrollEnd: function () {      
-                    //         teamVm.getModel(function(m) {
-                    //             $('thelist').empty();
-                    //             var li = document.createElement('li');
-
-                    //             m.get("Teams").each(function(item){    
-                    //                 $(li).attr("data-teamid", item.get("_id"));
-                    //                 $(li).append("<a href='javascript:void(0)'>" + item.get("name") + "</a>");
-                    //                 $('thelist').append(li);
-                    //             });
-
-                    //             myScroll.refresh();
-                    //         }, that.selectedSportId, that.selectedStateId);   // Execute custom function (ajax call?)
-                    //     }
-                    // });
                 }, $('#sportsList').val(), $('#statesList').val());
-            },
-            // stateChanged: function(e) {
-            //     var stateId = $(e.currentTarget).val();
-
-            //     LockerRoom.vent.trigger("stateChanged", stateId);
-            // },
-            // sportChanged: function(e) {
-            //     var sportId = $(e.currentTarget).val();
-            //     //if ($("statesList")
-            //    // LockerRoom.vent.trigger("sportChanged", sportId);
-            // }
+            }
         });
-
         return view;
    });
