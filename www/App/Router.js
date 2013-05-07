@@ -4,13 +4,13 @@
         'underscore',
         'backbone',
         'marionette',
-        //'Views/Home',
         'Model/user',
         'Views/AccountInfo',
         'Views/Panel',
         'Views/Header',
+        'Views/Home',
         'ViewModel/HomeViewModel'
-    ], function ($, jqm, _, backbone, marionette, userModel, accountView, panelView, headerView, homeVm) {
+    ], function ($, jqm, _, backbone, marionette, userModel, accountView, panelView, headerView, homeView, homeVm) {
         var appRouter = marionette.AppRouter.extend({
             routes: {
                 "": "defaultAction"
@@ -29,11 +29,6 @@
                 homeVm.getUser(function(m) {
                     if (m.get("HasBasicInfo") && m.get("teams").length > 0) {
                         // TODO:  if the user has filled out their basic info and has at least one team then navigate to the wall
-                        // homeVm.getModel(function(m) {
-                        //     LockerRoom.layout = new homeView({ model: m });
-                        //     LockerRoom.main.show(LockerRoom.layout);
-                        // });
-
                         var wallModel = new WallModel({
                             user: m,
                             comments: []        // TODO:  Fetch from db using teams (last 10?)
@@ -42,7 +37,10 @@
                         LockerRoom.main.show(wallView);
                     } else if (m.get("HasBasicInfo") && m.get("teams").length == 0) {
                         // TODO:  if the user has filled out their basic info but has no teams navigate to the setup, then to the wall
-
+                        homeVm.getModel(function(m) {
+                            LockerRoom.layout = new homeView({ model: m });
+                            LockerRoom.main.show(LockerRoom.layout);
+                        });
                     } else if (!m.get("HasBasicInfo")) {
                         // TODO:  if the user has not filled out the basic info navigate to "accountView" then navigate to setup/wall
                         // var m = new userModel({ 

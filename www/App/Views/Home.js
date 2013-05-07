@@ -3,14 +3,16 @@ define([
         'underscore',
         'backbone',
         'marionette',
+        'ViewModel/TeamViewModel',
+        'Views/Teams',
         'Lib/Require/Plugins/text!Templates/Home.html'
-    ], function ($, _, backbone, marionette, templ) {
+    ], function ($, _, backbone, marionette, teamVm, teamView, templ) {
         var view = marionette.ItemView.extend({            
             template: templ,
             events: {
-                "click #showTeams": "showTeams",
-                "change #statesList": "stateChanged",
-                "change #sportsList": "sportChanged"
+                "click #showTeams": "showTeams"
+                // "change #statesList": "stateChanged",
+                // "change #sportsList": "sportChanged"
             },
             initialize: function () {
             },
@@ -43,18 +45,18 @@ define([
                     //         }, that.selectedSportId, that.selectedStateId);   // Execute custom function (ajax call?)
                     //     }
                     // });
-                }, this.selectedSportId, this.selectedStateId);
+                }, $('#sportsList').val(), $('#statesList').val());
             },
-            stateChanged: function(e) {
-                var stateId = $(e.currentTarget).val();
+            // stateChanged: function(e) {
+            //     var stateId = $(e.currentTarget).val();
 
-                LockerRoom.vent.trigger("stateChanged", stateId);
-            },
-            sportChanged: function(e) {
-                var sportId = $(e.currentTarget).val();
-                //if ($("statesList")
-               // LockerRoom.vent.trigger("sportChanged", sportId);
-            }
+            //     LockerRoom.vent.trigger("stateChanged", stateId);
+            // },
+            // sportChanged: function(e) {
+            //     var sportId = $(e.currentTarget).val();
+            //     //if ($("statesList")
+            //    // LockerRoom.vent.trigger("sportChanged", sportId);
+            // }
         });
 
         return view;
